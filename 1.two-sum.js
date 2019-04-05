@@ -1,5 +1,3 @@
-import { map } from "async";
-
 /*
  * @lc app=leetcode id=1 lang=javascript
  *
@@ -37,9 +35,9 @@ import { map } from "async";
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let result = {};
-    for (let i = 0; i < nums.length; i++) {
-     if (map[target - nums[i]] !== undefined) return [map[target-nums[i]], i]
-     map[nums[i]] = i;
-    }
+  let result = {};
+  for (let i = 0; i < nums.length; i++) {
+   if (result[target - nums[i]] !== undefined) return [result[target-nums[i]], i]
+   result[nums[i]] = i;
+  }
 };
