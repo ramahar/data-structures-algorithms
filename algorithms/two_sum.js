@@ -36,6 +36,9 @@ import { map } from "async";
  * @param {number} target
  * @return {number[]}
  */
+
+ //Time complexity: O(n)
+ //Space Complexity: O(n)
 var twoSum = function(nums, target) {
     let result = {};
     for (let i = 0; i < nums.length; i++) {
