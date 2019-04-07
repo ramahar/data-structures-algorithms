@@ -47,5 +47,5 @@
  */
 var reverse = function(x) {
   const reversed = x.toString().split('').reverse().join('');  //Int -> String -> Array -> Reverse 
-  return Math.sign(x) * parseInt(reversed);
+  return Math.sign(x) * parseInt(reversed);   //Convert back to int, add sign 
 };
