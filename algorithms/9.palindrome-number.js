@@ -50,4 +50,5 @@
  */
 var isPalindrome = function(x) {
     return x.toString() === x.toString().split('').reverse().join('');
+    //If not converting to string, use Math.floor(x/10)
 };
