@@ -5,6 +5,6 @@ export default class LinkedListNode {
   }
 
   toString(callback) {
-
+    
   }
 }
