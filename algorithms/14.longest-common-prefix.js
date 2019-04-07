@@ -40,6 +40,7 @@
  * @param {string[]} strs
  * @return {string}
  */
+
 var longestCommonPrefix = function(strs) {
     'use strict';
     if (strs === undefined || strs.length === 0) return '';
@@ -75,6 +76,5 @@ var longestCommonPrefix = function(arr) {
       length--
       longestStr = longestStr.substr(0, length)
   }
-  
   return '';
 }
