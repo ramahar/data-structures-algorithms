@@ -46,6 +46,6 @@
  * @return {number}
  */
 var reverse = function(x) {
-  const reversed = x.toString().split('').reverse().join(''); // turn a number into a string, then turn it into an array to reverse. 
+  const reversed = x.toString().split('').reverse().join('');  //Int -> String -> Array -> Reverse 
   return Math.sign(x) * parseInt(reversed);
 };
