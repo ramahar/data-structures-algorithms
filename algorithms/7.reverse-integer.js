@@ -46,6 +46,10 @@
  * @return {number}
  */
 var reverse = function(x) {
-  const reversed = x.toString().split('').reverse().join('');  //Int -> String -> Array -> Reverse 
-  return Math.sign(x) * parseInt(reversed);   //Convert back to int, add sign 
+  let result = x.toString().split('').reverse().join('');
+    let num = parseInt(result);
+   if (num > 0x7FFFFFFF) {
+    return 0;
+  }
+    return Math.sign(x) * num;
 };
