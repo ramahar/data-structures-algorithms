@@ -42,7 +42,7 @@ import { map } from "async";
 var twoSum = function(nums, target) {
     let result = {};
     for (let i = 0; i < nums.length; i++) {
-     if (map[target - nums[i]] !== undefined) return [map[target-nums[i]], i]
-     map[nums[i]] = i;
+     if (result[target - nums[i]] !== undefined) return [result[target-nums[i]], i]
+     result[nums[i]] = i;
     }
 };
