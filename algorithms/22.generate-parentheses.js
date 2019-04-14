@@ -44,5 +44,7 @@ var generateParenthesis = function(n) {
     function compose(left, right, str) {
       //Recursive base case 
       if (!left && !right && str.length) result.push(str);
+      if (left) compose(left-1, right, str+'(');
+      if (right > left) compose(left, right-1, str+')');
     }
 };
