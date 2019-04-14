@@ -57,6 +57,7 @@ var MinStack = function() {
  */
 MinStack.prototype.push = function(x) {
     this.container.push(x);
+    //Push element if stack is empty or value is less than last element [For min stack]
     if (this.minStack.length === 0 || x <= this.minStack[this.minStack.length - 1]) {
         this.minStack.push(x);
     }
@@ -67,6 +68,7 @@ MinStack.prototype.push = function(x) {
  */
 MinStack.prototype.pop = function() {
     var x = this.container.pop();
+    //If element equal to greatest element in min stack, pop it off 
     if (x === this.minStack[this.minStack.length - 1]) {
         this.minStack.pop();
     }
