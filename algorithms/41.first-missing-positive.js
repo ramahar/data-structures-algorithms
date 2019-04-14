@@ -51,8 +51,18 @@ var firstMissingPositive = function(nums) {
     for (let i = 0; i < nums.length; i++) {
       let curr = nums[i];
       result[curr] = curr;
+      // if (curr > max) max = curr;  
       max = curr > max ? curr : max 
     }
 
-    
+    //Edge case: If array contains all negative numbers or 0
+    if (max === 0) return 1;
+
+    //First number which doesn't exist in object is the answer 
+    for (let i = 1; i < max; i++) {
+      if (!result[i]) return i;
+    }
+
+    //Edge case: If missing positive number is greater than max 
+    return max+1; 
 };
