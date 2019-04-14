@@ -59,32 +59,22 @@
  */
 /**
  * @param {TreeNode} root
- */
-var BSTIterator = function(root) {
-    this.root = root;
-    this.nxt = null; 
-    this.stack = [];
-};
+ */function BSTIterator(root) {
+  var stack = [];
+  return {hasNext, next};
 
-/**
- * @return the next smallest number
- * @return {number}
- */
-BSTIterator.prototype.next = function() {
-    
-};
+  function hasNext() {
+    return root || stack.length;
+  }
 
-/**
- * @return whether we have a next smallest number
- * @return {boolean}
- */
-BSTIterator.prototype.hasNext = function() {
-    
-};
-
-/** 
- * Your BSTIterator object will be instantiated and called as such:
- * var obj = new BSTIterator(root)
- * var param_1 = obj.next()
- * var param_2 = obj.hasNext()
- */
+  function next() {
+    while (root) {
+      stack.push(root);
+      root = root.left;
+    }
+    root = stack.pop();
+    var result = root.val;
+    root = root.right;
+    return result;
+  }
+}
