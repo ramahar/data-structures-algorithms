@@ -59,19 +59,24 @@
  */
 /**
  * @param {TreeNode} root
- */function BSTIterator(root) {
+ */
+function BSTIterator(root) {
   var stack = [];
   return {hasNext, next};
 
+  //Checks if there is a next node to visit 
   function hasNext() {
     return root || stack.length;
   }
 
+  //Moves to the next node 
   function next() {
+    //Push root to stack and traverse left tree 
     while (root) {
       stack.push(root);
       root = root.left;
     }
+    //Pop root from stack and traverse right tree 
     root = stack.pop();
     var result = root.val;
     root = root.right;
