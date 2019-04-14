@@ -47,43 +47,38 @@
  * initialize your data structure here.
  */
 var MinStack = function() {
-    this.stack = [];
+    this.minStack = [];
+    this.container = [];
 };
 
-/** 
+/**
  * @param {number} x
- * @return {void}
+ * @returns {void}
  */
 MinStack.prototype.push = function(x) {
-    this.stack.push(x);
+    this.container.push(x);
+    if (this.minStack.length === 0 || x <= this.minStack[this.minStack.length - 1]) {
+        this.minStack.push(x);
+    }
 };
 
 /**
- * @return {void}
+ * @returns {void}
  */
 MinStack.prototype.pop = function() {
-    this.stack.pop();
+    var x = this.container.pop();
+    if (x === this.minStack[this.minStack.length - 1]) {
+        this.minStack.pop();
+    }
 };
 
 /**
- * @return {number}
+ * @returns {number}
  */
 MinStack.prototype.top = function() {
-    this.stack[-1];
+    return this.container[this.container.length - 1];
 };
 
-/**
- * @return {number}
- */
 MinStack.prototype.getMin = function() {
-    
-};
-
-/** 
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(x)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
+    return this.minStack[this.minStack.length - 1];
+}
