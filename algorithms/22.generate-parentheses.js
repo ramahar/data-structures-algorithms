@@ -1,4 +1,3 @@
-import { compose } from "async";
 
 /*
  * @lc app=leetcode id=22 lang=javascript
@@ -36,15 +35,17 @@ import { compose } from "async";
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    //Result must contain n pairs of every parentheses 
     let result = [];
-    compose(n, n, '');
+    combine(n, n, '');
     return result;
 
-    function compose(left, right, str) {
+    //Function that combines two halves of array, adding the string at every step
+    function combine(left, right, str) {
       //Recursive base case 
       if (!left && !right && str.length) result.push(str);
-      if (left) compose(left-1, right, str+'(');
-      if (right > left) compose(left, right-1, str+')');
+      //If left half exists, add opening parentheses to string, push to result
+      if (left) combine(left-1, right, str+'(');
+      //Else, add closing parentheses, push to result 
+      if (right > left) combine(left, right-1, str+')');
     }
 };
