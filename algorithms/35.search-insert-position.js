@@ -57,9 +57,8 @@ var searchInsert = function(nums, target) {
 };
 
 var binarySearch = function(array, target, start, end) {
-  
+  //If target not found, return index where target would have been added 
   if (start > end) return start;
-    
   const midPoint = Math.floor((start + end)/2);
   
 // found target
