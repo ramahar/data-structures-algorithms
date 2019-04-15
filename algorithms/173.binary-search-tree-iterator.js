@@ -62,7 +62,8 @@
  */
 function BSTIterator(root) {
   var stack = [];
-  return {hasNext, next};
+  this.next = next;
+  this.hasNext = hasNext;
 
   //Checks if there is a next node to visit 
   function hasNext() {
@@ -76,10 +77,16 @@ function BSTIterator(root) {
       stack.push(root);
       root = root.left;
     }
-    //Pop root from stack and traverse right tree 
+    //Pop node from stack and traverse right tree 
     root = stack.pop();
     var result = root.val;
     root = root.right;
     return result;
   }
 }
+
+/**
+ * Your BSTIterator will be called like this:
+ * var i = new BSTIterator(root), a = [];
+ * while (i.hasNext()) a.push(i.next());
+*/
