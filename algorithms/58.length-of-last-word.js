@@ -31,6 +31,6 @@
  * @return {number}
  */
 var lengthOfLastWord = function(s) {
-    
+    //Trim to remove white space
+    return s.trim()
 };
-
