@@ -32,5 +32,5 @@
  */
 var lengthOfLastWord = function(s) {
     //Trim to remove white space
-    return s.trim().split(' ').pop()
+    return s.trim().split(' ').pop().length;
 };
