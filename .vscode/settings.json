@@ -12,10 +12,10 @@
     "tab.border": "#0b1015",
     "panel.border": "#05080A",
     "statusBar.border": "#05080A",
-    "activityBar.background": "#7f40bf",
+    "activityBar.background": "#ab307e",
     "activityBar.foreground": "#e7e7e7",
     "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#c78f58",
-    "activityBarBadge.foreground": "#15202b"
+    "activityBarBadge.background": "#25320e",
+    "activityBarBadge.foreground": "#e7e7e7"
   }
 }
