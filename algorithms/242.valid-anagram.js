@@ -48,7 +48,7 @@ var isAnagram = function(s, t) {
     // If character from t exists in object, decrement char count 
     t.split('').map(c => map[c] = map[c] ? map[c] - 1 : -1)
     // If all values in object are 0, strings are anagrams
-    Object.keys(map).every(key => map[key] === 0)
+    return Object.keys(map).every(key => map[key] === 0)
 };
 // Time complexity: O(m + n) where m, n are lengths of strings 
 
