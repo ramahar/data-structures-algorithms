@@ -48,3 +48,6 @@ var isAnagram = function(s, t) {
     t.split('').map(c => map[c] = map[c] ? map[c] - 1 : -1)
     Object.keys(map).every(key => map[key] === 0)
 };
+
+// Inefficient solution
+// return s.split('').sort().join('') === t.split('').sort().join('')
