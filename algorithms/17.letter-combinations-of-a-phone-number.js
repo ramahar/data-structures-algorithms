@@ -50,5 +50,18 @@ var letterCombinations = function(digits) {
 
     // Base Case for recursion
     if (!digits || digits.length === 0) return [];
-    if (digits.length === 1) return mapping[digits];
+    if (digits.length === 1) return mappings[digits];
+
+    let result = [];
+    // Recursive call on first element + Rest of elements 
+    let set1 = letterCombinations(digits.substr(0, 1))
+    let set2 = letterCombinations(digits.substr(1))
+
+    // Push letter combinations to result array 
+    for (let i = 0; i < set1.length; i++) {
+      for (let j = 0; j < set2.length; j++) {
+        result.push(set1[i] + set2[j]);
+      }
+    }
+    return result;
 };
