@@ -53,8 +53,9 @@ var letterCombinations = function(digits) {
     if (digits.length === 1) return mappings[digits];
 
     let result = [];
-    // Recursive call on first element + Rest of elements 
+    // Recursive call on first number 
     let set1 = letterCombinations(digits.substr(0, 1))
+    // Recursive call on rest of numbers in input 
     let set2 = letterCombinations(digits.substr(1))
 
     // Push letter combinations to result array 
