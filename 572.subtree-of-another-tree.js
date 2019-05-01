@@ -22,25 +22,12 @@
  * @return {boolean}
  */
 var isSubtree = function(s, t) {
-    
+    if (!s) return !t;
+    return isEqual(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
 };
 
-function quickSort(arr) {
-  if(arr.length <= 1) return arr;
-
-  var pivot = arr[0];
-  var left = [];
-  var right = [];
-
-  for (var i = 1; i < arr.length; i++) {
-    // Elements greater than pivot move to right of pivot
-    if ( arr[i] > pivot ) {
-      right.push(arr[i]);
-    // Elements less than pivot move to left 
-    } else {
-      left.push(arr[i]);
-    }
-  }
-  // Concat left subarray with pivot and right subarray 
-  return quickSort(left).concat(pivot, quickSort(right));
+function isEqual(root1, root2) {
+    if (!root1 || !root2) return !root1 && !root2;
+    if (root1.val !== root2.val) return false;
+    return isEqual(root1.left, root2.left) && isEqual(root1.right, root2.right);
 }
