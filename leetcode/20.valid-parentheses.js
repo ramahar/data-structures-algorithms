@@ -64,25 +64,24 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    //Pair object with matching brackets as key-value pairs 
     var pairs = {
       "(":")",
       "{":"}",
       "[":"]"
     }
-
-    var stack = [];
-    for (var i of s) {
-      //Push to stack if opening bracket 
-      if (pairs[i]) {
-        stack.push(pairs[i]);
-      }
-      // If character does not exist in pair, return false
-      //If the closing bracket in the string matches the value that we pushed in our stack, pop that value out of the stack
-      if (!pairs[i] && i !== stack.pop()) {
-        return false;
+    let stack = [];
+    for (let i = 0; i < s.length; i++) {
+      // Push closing bracket to stack if opening found in string 
+      let el = s[i];
+      if (pairs[el]) {
+        stack.push(pairs[el]);
+      } else {
+        // Closing bracket does not match with opening 
+        if (el !== stack.pop()) {
+          return false;
+        }
       }
     }
-    //Final stack length should be 0 if matching pair found
+    // Stack should be empty if matching parentheses 
     return stack.length === 0;
 };
