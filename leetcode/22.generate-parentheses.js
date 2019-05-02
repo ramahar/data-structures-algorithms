@@ -39,13 +39,13 @@ var generateParenthesis = function(n) {
     combine(n, n, '');
     return result;
 
-    //Function that combines two halves of array, adding the string at every step
+    // Combine left and right half, add to result string 
     function combine(left, right, str) {
-      //Recursive base case 
+      // Return str if left and right half don't exist
       if (!left && !right && str.length) result.push(str);
-      //If left half exists, add opening parentheses to string, push to result
+      // Add opening parentheses if left half exists 
       if (left) combine(left-1, right, str+'(');
-      //Else, add closing parentheses, push to result 
+      // Combine right half until right > left 
       if (right > left) combine(left, right-1, str+')');
     }
 };
