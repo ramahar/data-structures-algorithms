@@ -13,8 +13,8 @@ var romanToInt = function(s) {
   var roman = ["M", "CM","D","CD","C", "XC", "L", "XL", "X","IX","V","IV","I"];
   
   for (var i = 0; i <= decimal.length;i++) {
-    // If string contains roman, add decimal to result 
     while (s.indexOf(roman[i]) === 0){
+      // Keep adding decimal while string contains roman number
       result += decimal[i];
       // After adding number, remove roman from string 
       s = s.replace(roman[i],'');
