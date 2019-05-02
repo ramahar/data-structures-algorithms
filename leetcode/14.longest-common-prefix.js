@@ -42,16 +42,18 @@
  */
 
 var longestCommonPrefix = function(strs) {
-    'use strict';
-    if (strs === undefined || strs.length === 0) return '';
+    if (!strs.length) return '';
 
-    return strs.reduce((prev, next) => {
-      let i = 0;
-      while (prev[i] && next[i] && prev[i] === next[i]) {
-        i++;
-      }
-      return prev.slice(0, i);
-    })
+    // Iterate through first word in array 
+    for (let i = 0; i < strs[0].length; i++) {
+        for (let string of strs) {
+            if (string[i] !== strs[0][i]) {
+                return string.slice(0, i);
+            }
+        }
+    }
+    // First word in array will be the longest prefix 
+    return strs[0];
 };
 
 // FASTER solution 
