@@ -44,9 +44,10 @@
 var longestCommonPrefix = function(strs) {
     if (!strs.length) return '';
 
-    // Iterate through first word in array 
+    // Iterate through first word in array and check prefix in other words
     for (let i = 0; i < strs[0].length; i++) {
         for (let string of strs) {
+            // Return prefix if no more matching chars 
             if (string[i] !== strs[0][i]) {
                 return string.slice(0, i);
             }
