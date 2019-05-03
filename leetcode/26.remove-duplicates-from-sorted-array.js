@@ -67,9 +67,8 @@ var removeDuplicates = function (nums) {
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] == nums[i + 1]) {
       //Removes items from an array, and returns the removed item(s)
-      //splice(index, howmany)
       nums.splice(i, 1);
-      //Go back one index after removing duplicate
+      // Ensure only one occurence of each number 
       i--;
     }
   }
