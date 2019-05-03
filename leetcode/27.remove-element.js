@@ -70,14 +70,7 @@
  * @return {number}
  */
 var removeElement = function(nums, val) {
-    var result = 0;
-    for (let i = nums.length; i--;) {
-      if (nums[i] === val) {
-        nums.splice(i, 1);
-      } else {
-        //Increment length if val not found 
-        result++;
-      }
+    for (let i = nums.length-1; i >= 0; i--) {
+      if (nums[i] === val) nums.splice(i, 1);
     }
-    return result;
 };
