@@ -52,20 +52,17 @@
  * @return {number}
  */
 var searchInsert = function(nums, target) {
-    if (!nums) return 0;
-   return binarySearch(nums, target, 0, nums.length-1);
-};
+  let start = 0;
+  let end = nums.length-1;
 
-var binarySearch = function(array, target, start, end) {
-  //If target not found, return index where target would have been added 
-  if (start > end) return start;
-  const midPoint = Math.floor((start + end)/2);
-  
-// found target
-  if (array[midPoint] === target) return midPoint;
-  
-// search the left side
-  if (array[midPoint] > target) return binarySearch(array, target, start, midPoint - 1);
-  // search the right side
-  if (array[midPoint] < target) return binarySearch(array, target, midPoint + 1, end);
-}
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    // Search right half
+    if (target > nums[mid]) {
+      start = mid + 1; 
+    } else {
+      end = mid - 1;
+    }
+  }
+  return start; 
+};
