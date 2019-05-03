@@ -42,10 +42,10 @@ var generateParenthesis = function(n) {
     // Combine left and right half, add to result string 
     function combine(left, right, str) {
       // Return str if left and right half don't exist
-      if (!left && !right && str.length) result.push(str);
-      // Add opening parentheses if left half exists 
+      if (!left && !right) result.push(str);
+      // Recursive call on left half to add opening parenthesis
       if (left) combine(left-1, right, str+'(');
-      // Combine right half until right > left 
+      // Recursive call on right half if right > left 
       if (right > left) combine(left, right-1, str+')');
     }
 };
