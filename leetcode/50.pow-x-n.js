@@ -49,15 +49,13 @@
  * @return {number}
  */
 var myPow = function(x, n) {
-    //Base case
-    // if (n == 0) return 1;
-    // if (n === 1) return x;
+  if (n === 0) return 1;
+  if (n === -1) return 1/x;
 
-    // if (n < 0) {
-    //   n = -n;
-    //   x = 1/x;
-    // }
-    // return (n%2 === 0) ? myPow(x*x, n/2) : x*myPow(x*x, n/2);
-
-    return x**n;
+  if (n % 2 === 0) {
+    let m = myPow(x, n/2);  // 3^4 -> 3^2 * 3^2
+    return m * m; 
+  } else {
+    return x * myPow(x, n-1); // 3^5 -> 3 * 3^4
+  }
 };

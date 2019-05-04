@@ -12,6 +12,7 @@ var maxSubArray = function(nums) {
     // Updates largest sum in every iteration  
     nums[i] = Math.max(nums[i], nums[i] + nums[i-1]);
   }
+  // Array has all subarray lengths. Spread and find max of these 
   return Math.max(...nums);
 };
 // console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
