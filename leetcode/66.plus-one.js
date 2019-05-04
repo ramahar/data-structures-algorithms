@@ -40,13 +40,15 @@
  * @param {number[]} digits
  * @return {number[]}
  */
-var plusOne = function(digits) {
-    for (let i = digits.length-1; i >= 0; i--) {     
-     // Increment then check if value > 9 
-     if (++digits[i] > 9) digits[i] = 0;
-     else return digits;
-    }
-    // Add 1 to the front after last digit incremented 
-    // Same thing as digits.unshift(1) then return digits [But faster]
-    return [1, ...digits]
+function plusOne(digits) {
+   let i = digits.length;
+   while (i--) {
+       digits[i] += 1;
+       if (digits[i] < 10) return digits;
+
+       digits[i] = 0;
+   }
+   // Add 1 to front if last digit incremented
+   digits.unshift(1);
+   return digits;
 };
