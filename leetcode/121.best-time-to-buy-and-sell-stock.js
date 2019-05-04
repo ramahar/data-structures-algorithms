@@ -7,13 +7,15 @@
  * @param {number[]} prices
  * @return {number}
  */
+// Time Complexity: O(n)
 var maxProfit = function(prices) {
-    // Find min and max in array, then find the difference
-    let min = Number.MAX_SAFE_INTEGER;
-    let max = 0;
-    for (let i = 0; i < prices.length; i++) {
-      min = Math.min(min, prices[i]);
-      max = Math.max(max, prices[i] - min);
+    let min = Infinity;
+    let max = 0; 
+
+    // Calculate max profit in every iteration 
+    for (let i = 0; i < prices.length-1; i++) {
+      min = Math.min(prices[i], min);
+      max = Math.max(max, prices[i+1] - min);
     }
     return max;
 };
