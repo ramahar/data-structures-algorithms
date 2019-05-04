@@ -1,4 +1,8 @@
 // Implement a MyQueue class which implements a queue using two stacks
+
+// (1) On enqueue, simply push the elements into the stack 1.
+// (2) On dequeue, push all the elements from stack 1 into stack 2, which reverses the order of the elements. 
+// Now pop from stack 2.
 class MyQueue {
   constructor() {
     this.stack1 = [];
@@ -9,7 +13,6 @@ class MyQueue {
     this.stack1.push(val);
   }
 
-  // Push elements from stack1 to stack2, then pop from stack2
   dequeue() {
     if (this.stack2.length === 0) {
       while (this.stack1.length) {
