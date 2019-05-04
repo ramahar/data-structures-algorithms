@@ -1,5 +1,6 @@
 // Implement a MyQueue class which implements a queue using two stacks
 
+// Since stack and queue have different orders for removal, 
 // (1) On enqueue, simply push the elements into the stack 1.
 // (2) On dequeue, push all the elements from stack 1 into stack 2, which reverses the order of the elements. 
 // Now pop from stack 2.
@@ -23,3 +24,5 @@ class MyQueue {
     return this.stack2.pop();
   }
 }
+
+// Time complexity: O(n) to transfer n elements between stacks
