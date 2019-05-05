@@ -60,30 +60,35 @@
 /**
  * @param {TreeNode} root
  */
-function BSTIterator(root) {
-  var stack = [];
-  this.next = next;
-  this.hasNext = hasNext;
+var BSTIterator = function(root) {
+    this.root = root;
+    this.stack = [];
+};
 
-  //Checks if there is a next node to visit 
-  function hasNext() {
-    return root || stack.length;
-  }
-
-  //Moves to the next node 
-  function next() {
-    //Push root to stack and traverse left tree 
-    while (root) {
-      stack.push(root);
-      root = root.left;
+/**
+ * @return the next smallest number
+ * @return {number}
+ */
+BSTIterator.prototype.next = function() {
+    // Push nodes to stack and traverse left subtree
+    while (this.root) {
+      this.stack.push(this.root);
+      this.root = this.root.left;
     }
-    //Pop node from stack and traverse right tree 
-    root = stack.pop();
-    var result = root.val;
-    root = root.right;
+    // Pop element from stack, make it the root, then traverse right subtree 
+    this.root = this.stack.pop();
+    var result = this.root.val;
+    this.root = this.root.right;
     return result;
   }
-}
+
+/**
+ * @return whether we have a next smallest number
+ * @return {boolean}
+ */
+BSTIterator.prototype.hasNext = function() {
+  return this.root || this.stack.length;
+};
 
 /**
  * Your BSTIterator will be called like this:
