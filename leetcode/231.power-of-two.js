@@ -41,6 +41,7 @@
  */
 var isPowerOfTwo = function(n) {
     if (n < 1) return false;
-    // Bitwise AND with power of 2 always returns 0 
+    // Example: 16 -> 10000, 15 -> 01111
+    // 16 & 15 === 0
     return (n & (n-1)) === 0;
 };

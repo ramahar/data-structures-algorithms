@@ -15,6 +15,8 @@
  * @return {ListNode}
  */
 // Iterative
+// Iterate through linked list with three-pointers
+// While iterating at each step reverse the current link’s direction.
 var reverseList = function(head) {
     let newHead = null; 
     while (head) {
