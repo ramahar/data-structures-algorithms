@@ -48,7 +48,7 @@
  */
 var MinStack = function() {
     this.minStack = [];
-    this.container = [];
+    this.stack = [];
 };
 
 /**
@@ -56,9 +56,9 @@ var MinStack = function() {
  * @returns {void}
  */
 MinStack.prototype.push = function(x) {
-    this.container.push(x);
-    //Push element if stack is empty or value is less than last element [For min stack]
-    if (this.minStack.length === 0 || x <= this.minStack[this.minStack.length - 1]) {
+    this.stack.push(x);
+    //Push element if min stack is empty or value is less than last element in min stack 
+    if (!this.minStack.length || x <= this.minStack[this.minStack.length-1]) {
         this.minStack.push(x);
     }
 };
@@ -67,10 +67,10 @@ MinStack.prototype.push = function(x) {
  * @returns {void}
  */
 MinStack.prototype.pop = function() {
-    var x = this.container.pop();
-    //If element equal to greatest element in min stack, pop it off 
-    if (x === this.minStack[this.minStack.length - 1]) {
-        this.minStack.pop();
+    let x = this.stack.pop();
+    //If popped number is equal to last element in min stack, pop it from minStack
+    if (x === this.minStack[this.minStack.length-1]) {
+        this.minStack.pop()
     }
 };
 
@@ -78,9 +78,10 @@ MinStack.prototype.pop = function() {
  * @returns {number}
  */
 MinStack.prototype.top = function() {
-    return this.container[this.container.length - 1];
+    return this.stack[this.stack.length - 1];
 };
 
+// Last number in min stack is the minimum 
 MinStack.prototype.getMin = function() {
     return this.minStack[this.minStack.length - 1];
 }
