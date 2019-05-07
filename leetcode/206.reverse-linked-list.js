@@ -18,14 +18,21 @@
 // Iterate through linked list with three-pointers
 // While iterating at each step reverse the current link’s direction.
 var reverseList = function(head) {
-    let newHead = null; 
-    while (head) {
-      let next = head.next;
-      head.next = newHead;
-      newHead = head;
-      head = next;
-    }
-    return newHead;
+  if (!head) return head; 
+  let node = head;
+  let newHead;
+  let temp; 
+
+  while (node) {
+    // Save node.next before overwriting it
+    temp = node.next;
+    // Reverse pointer
+    node.next = newHead;
+    // Step forward in list 
+    newHead = node; 
+    node = temp; 
+  }
+  return newHead; 
 };
 
 // Recursive 
