@@ -16,3 +16,27 @@ Example 1:
 Output:
   true
 */
+
+// Time: O(mn) where m = rows, n = columns 
+var validWordSquare = function(words) {
+  if (words === null || words.length === 0) return false; 
+
+  // Loop through and check if rows match columns 
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; j < words[i].length; j++) {
+        if (j >= words.length || i >= words[j].length || words[i][j] !== words[j][i]) { 
+            // make sure j < words.length, make sure we have words[j]
+            // make sure i < words[j].length, because we are checking words[j][i]
+            return false;
+        }
+    }
+}
+return true;
+}
+
+// console.log(validWordSquare([
+//   "abcd",
+//   "bnrt",
+//   "crmy",
+//   "dtye"
+// ]))
