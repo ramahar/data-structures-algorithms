@@ -18,8 +18,8 @@ function generate_phrases(phrases) {
         second = phrases[j].split(" ");
       }
 
-      if (second[second.length - 1] === first[0] &&
-        first.length > 1 && first.length > 1) {
+      // Check if last word in a phrase is the first word in another phrase
+      if (second[second.length - 1] === first[0] && first.length > 1) {
         combine.push([...second, ...first.slice(1)].join(" "));
       }
     }
