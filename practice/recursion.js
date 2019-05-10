@@ -35,5 +35,25 @@ function lucasNumber(n) {
 // sumArray([5, 2])         // => 7
 // sumArray([4, 10, -1, 2]) // => 15
 function sumArray(array) {
-  
+  if (!array.length) return 0;
+
+  return array[0] + sumArray(array.slice(1));
+}
+
+// Write a function, reverseString(str), that takes in a string.
+// The function should return the string with it's characters in reverse order.
+//
+// Solve this recursively!
+//
+// Examples:
+// 
+// reverseString("")            // => ""
+// reverseString("c")           // => "c"
+// reverseString("internet")    // => "tenretni"
+// reverseString("friends")     // => "sdneirf"
+function reverseString(str) {
+  if (str.length <= 1) return str;
+
+  let remaining = str.slice(0, str.length-1);
+  return str[str.length-1] + reverseString(remaining);
 }
