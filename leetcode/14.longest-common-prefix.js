@@ -57,8 +57,29 @@ var longestCommonPrefix = function(strs) {
     return strs[0];
 };
 
+// Alternate
+var longestCommonPrefix1 = function(arr) {
+    if (!strs.length) return "";
+    let first = strs[0];
+    let result = "";
+  
+    let i = 0;
+    while (true) {
+      let char = first[i];
+  
+      // Compare characters in first word with rest of words 
+      for (let str of strs) {
+        if (!str[i]) return result;
+        if (str[i] !== char) return result;
+      }
+      // Adds char to result string if it matches other words    
+      result += char;
+      i++;
+    }
+}
+
 // FASTER solution 
-var longestCommonPrefix = function(arr) {
+var longestCommonPrefix2 = function(arr) {
   if(!arr.length) return ''
   if(arr.length == 1) return arr[0]
       
