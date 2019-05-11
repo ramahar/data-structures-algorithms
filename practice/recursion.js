@@ -84,3 +84,98 @@ function pow(base, exponent) {
     return 1 / base * pow(base, exponent+1);
   }
 }
+
+// A 1-dimensional array is also known as a flattened array.
+// Write a method, flatten(data), that accepts a single argument. The
+// method should take in an array of any dimension and return the flattened
+// version of that array. Solve this recursively.
+//   
+// Hint:
+//  - if the argument is not an array, then we have reached the base case
+//  - look up the documentation for how to check if data is an array or not
+//
+// Examples:
+//
+// array_1 = [1, 2, [[3, 4], [5, [6]]], [7, 8]]
+// flatten(array_1)      // => [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+//
+// array_2 = ['this', ['problem', 'is'], [['pretty', 'tough'], [[':)']]]]
+// flatten(array_2)      // => [ 'this', 'problem', 'is', 'pretty', 'tough', ':)' ]
+//
+// flatten('base case')  // => [ 'base case' ]
+//
+// Another Hint:
+//
+// From the last example, you may be confused. We said that the method takes
+// in an array as an arg, but we passed it a string?
+// If data is not an array, then we can consider it as a 0-dimensional array.
+//     0-dimensional array: 'some data'
+//     1-dimensional array: ['some data']
+//     2-dimensional array: [['some data']]
+//     3-dimensional array: [[['some data']]]
+function flatten(data) {
+  let result = [];
+  data.forEach(inner => {
+    if (Array.isArray(inner)) {
+     result = result.push(flatten(inner));
+    } else {
+      result.push(data);
+    }
+  })
+  return result; 
+}
+
+// Write a function, fileFinder(directories, targetFile), that accepts an object representing directories and a string respresenting a filename.
+// The function should return true, if the file is contained anywhere in the given directories.
+// Note that directory names will begin with '/', but file names will not.
+// 
+// Example:
+//
+// let desktop = {
+//     '/images': {
+//         'app_academy_logo.svg': null,
+//         '/parks': {
+//             'yosemite.jpeg': null,
+//             'acadia.jpeg': null,
+//             'yellowstone.png': null
+//         },
+//         '/pets': {
+//             'trixie_lou.jpeg': null,
+//             'rolo.jpeg': null,
+//             'opal.jpeg': null,
+//             'diana.jpeg': null,
+//         }
+//     },
+//     '/music': {
+//         'hey_programmers.mp3': null,
+//         '/genres': {
+//             '/rock': {
+//                 'everlong.flac': null,
+//                 'livin_on_a_prayer.mp3': null
+//             },
+//             '/hip_hop': {
+//                 'express_yourself.wav': null,
+//                 'ny_state_of_mind.mp3': null
+//             }
+//         }
+//     }
+// };
+//
+// fileFinder(desktop, 'app_academy_logo.svg');     // => true
+// fileFinder(desktop, 'everlong.flac');            // => true
+// fileFinder(desktop, 'sequoia.jpeg');             // => false
+function fileFinder(directories, targetFile) {
+  if (!directories) return false;
+  let dirs = Object.keys(directories);
+  // Anything starting with a / is a folder
+  let folders = dirs.filter(el => el[0] === "/");
+  let files = dirs.filter(el => el[0] !== "/");
+  
+  for (let i = 0; i < files.length; i++) {
+    if (files[i] === targetFile) return true;
+  }
+  for (let i = 0; i < folders.length; i++) {
+    if (fileFinder(directories[folders[i]], targetFile)) return true; 
+  }
+  return false; 
+}
