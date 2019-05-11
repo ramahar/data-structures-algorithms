@@ -179,3 +179,26 @@ function fileFinder(directories, targetFile) {
   }
   return false; 
 }
+
+// Write another function, pathFinder(directories, targetFile), that returns the path that contains the targetFile.
+// If the targetFile is not found in the directories, then return null.
+// You can assume the files are unique.
+//
+// Example using the same desktop from previously:
+//
+// pathFinder(desktop, 'trixie_lou.jpeg'));     // => '/images/pets/trixie_lou.jpeg'
+// pathFinder(desktop, 'everlong.flac'));       // => '/music/genres/rock/everlong.flac'
+// pathFinder(desktop, 'honeybadger.png'));     // => null
+function pathFinder(directories, targetFile) {
+  const dirs = Object.keys(directories);
+  const folders = dirs.filter(name => name[0] === "/");
+  const files = dirs.filter(name => name[0] !== "/");
+  for(let i = 0; i < files.length; i++){
+      if(files[i] === targetFile) return "/" + files[i];
+  }
+  for(let i = 0; i < folders.length; i++){
+      const path = pathFinder(directories[folders[i]], targetFile);
+      if(path) return folders[i] + path;
+  }
+  return null;
+}
