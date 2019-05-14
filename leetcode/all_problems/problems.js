@@ -12,4 +12,22 @@ function twoSum(nums, target) {
     map[nums[i]] = i; 
   }
 }
-console.log(twoSum([2, 7, 11, 15], 9));
+// console.log(twoSum([2, 7, 11, 15], 9));
+
+// Given a string, find the length of the longest substring without repeating characters.
+// Example:
+// Input: "abcabcbb"  Output: 3
+function lengthOfLongestSubstring(s) {
+
+}
+
+// Given a 32-bit signed integer, reverse digits of an integer.
+// Example:
+// Input: 123   Output: 321
+function reverse(x) {
+  let reversed = x.toString().split('').reverse().join('');
+  let num = parseInt(reversed);
+  if (res < -(2 ** 31) || res > 2 ** 31 - 1) return 0;
+  return Math.sign(x) * num; 
+}
+console.log(reverse(123));
