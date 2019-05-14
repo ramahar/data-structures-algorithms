@@ -27,7 +27,7 @@ function lengthOfLongestSubstring(s) {
 function reverse(x) {
   let reversed = x.toString().split('').reverse().join('');
   let num = parseInt(reversed);
-  if (res < -(2 ** 31) || res > 2 ** 31 - 1) return 0;
+  if (num < -(2 ** 31) || num > (2 ** 31)) return 0;
   return Math.sign(x) * num; 
 }
-console.log(reverse(123));
+// console.log(reverse(-123));
