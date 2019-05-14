@@ -45,11 +45,27 @@
  * @param {number} x
  * @return {number}
  */
-var reverse = function(x) {
-  let result = x.toString().split('').reverse().join('');
-    let num = parseInt(result);
-   if (num > 0x7FFFFFFF) {
-    return 0;
+// var reverse = function(x) {
+//   let result = x.toString().split('').reverse().join('');
+//     let num = parseInt(result);
+//    if (num > 0x7FFFFFFF) {
+//     return 0;
+//   }
+//     return Math.sign(x) * num;
+// };
+
+// Alternate faster solution
+// Time Complexity: O(n)
+function reverse(x) {
+  let res = 0;
+
+  while (x !== 0) {
+    res = res * 10 + x % 10;
+    // Bitwise NOT twice 
+    x = ~~(x / 10);
+
+    if (res < -(2 ** 31) || res > 2 ** 31 - 1) return 0;
   }
-    return Math.sign(x) * num;
-};
+
+  return res;
+}
