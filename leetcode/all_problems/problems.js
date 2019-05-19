@@ -31,3 +31,41 @@ function reverse(x) {
   return Math.sign(x) * num; 
 }
 // console.log(reverse(-123));
+
+// Determine whether an integer is a palindrome.
+// Example:
+// Input: 121   Output: True
+function isPalindrome(num) {
+  return num.toString() === num.toString().split('').reverse().join('');
+}
+// console.log(isPalindrome(121));
+
+// Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+// Example:
+// Input: "IX"  Output: 9
+function romanToInt(s) {
+
+}
+
+// Write a function to find the longest common prefix string amongst an array of strings.
+var longestCommonPrefix = function(strs) {
+  // Pick first word, find matching characters in rest of words. If no matching found, return
+  if (!strs.length) return "";
+  let first = strs[0];
+  let result = "";
+
+  let i = 0; 
+  while (true) {
+    let char = first[i];
+
+    // Compare characters in first word with remaining words
+    for (let str of strs) {
+      if (!str[i]) return result; 
+      if (char !== str[i]) return result;
+    }
+    result += char;
+    i++;
+  }
+  return result;
+}
+// console.log(longestCommonPrefix(['aa', 'aaasd', 'aad']))
