@@ -68,4 +68,33 @@ var longestCommonPrefix = function(strs) {
   }
   return result;
 }
-console.log(longestCommonPrefix(['aa', 'aaasd', 'aad']))
+// console.log(longestCommonPrefix(['aa', 'aaasd', 'aad']))
+
+// Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+var letterCombinations = function(digits) {
+
+}
+
+// Given a string containing just the characters '(', ')', '{', '}', '[' and ']',
+// determine if the input string is valid.
+// Input: "()[]{}"
+// Output: true
+function isValid(s) {
+  let pairs = {
+    "(":")",
+    "{":"}",
+    "[":"]"
+  }
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let el = s[i]
+    if (pairs[el]) {
+      stack.push(pairs[el]);
+      console.log(stack);
+    } else {
+      if (el !== stack.pop()) return false;
+    }
+  }
+  return stack.length === 0;
+}
+// console.log(isValid("()[]{}"));
