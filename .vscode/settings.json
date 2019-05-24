@@ -1,22 +1,30 @@
 {
   "workbench.colorCustomizations": {
-    "editor.background": "#05080A",
-    "sideBar.background": "#05080A",
-    "titleBar.border": "#05080A",
-    "list.activeSelectionBackground": "#05080A",
-    "list.inactiveSelectionBackground": "#05080A",
-    "tab.inactiveBackground": "#05080A",
-    "editorGroupHeader.tabsBackground": "#05080A",
-    "editorGroupHeader.noTabsBackground": "#05080A",
-    "sideBarSectionHeader.background": "#05080A",
-    "activityBar.border": "#0b1015",
-    "tab.border": "#0b1015",
-    "panel.border": "#05080A",
-    "statusBar.border": "#05080A",
-    "activityBar.background": "#2f7c47",
+    "activityBar.background": "#d04649",
     "activityBar.foreground": "#e7e7e7",
     "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#422c74",
-    "activityBarBadge.foreground": "#e7e7e7"
+    "activityBarBadge.background": "#37cb34",
+    "activityBarBadge.foreground": "#15202b"
   }
-}
+} // {
+//   "workbench.colorCustomizations": {
+//     "editor.background": "#05080A",
+//     "sideBar.background": "#05080A",
+//     "titleBar.border": "#05080A",
+//     "list.activeSelectionBackground": "#05080A",
+//     "list.inactiveSelectionBackground": "#05080A",
+//     "tab.inactiveBackground": "#05080A",
+//     "editorGroupHeader.tabsBackground": "#05080A",
+//     "editorGroupHeader.noTabsBackground": "#05080A",
+//     "sideBarSectionHeader.background": "#05080A",
+//     "activityBar.border": "#0b1015",
+//     "tab.border": "#0b1015",
+//     "panel.border": "#05080A",
+//     "statusBar.border": "#05080A",
+//     "activityBar.background": "#d04649",
+//     "activityBar.foreground": "#e7e7e7",
+//     "activityBar.inactiveForeground": "#e7e7e799",
+//     "activityBarBadge.background": "#37cb34",
+//     "activityBarBadge.foreground": "#15202b"
+//   }
+// }
