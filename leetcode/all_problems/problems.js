@@ -98,3 +98,22 @@ function isValid(s) {
   return stack.length === 0;
 }
 // console.log(isValid("()[]{}"));
+
+// Merge two sorted linked lists and return it as a new list. The new list
+// should be made by splicing together the nodes of the first two lists.
+function mergeTwoLists(l1, l2) {
+  if (!l1 || !l2) return l1 || l2;
+
+  if (l1.val > l2.val) [l1, l2] = [l2, l1];
+
+  l1.next = mergeTwoLists(l1.next, l2);
+  return l1;
+}
+
+// Given n pairs of parentheses, write a function to generate all combinations
+// of well-formed parentheses.
+// Example: Input: n = 3
+// Output: ["((()))", "(()())", "(())()", "()(())", "()()()"]
+function generateParenthesis(n) {
+
+}
