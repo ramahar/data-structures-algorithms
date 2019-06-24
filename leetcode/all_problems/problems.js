@@ -129,4 +129,15 @@ function removeVal(nums, val) {
   }
   return nums.length;
 }
-console.log(removeVal([3,2,2,3], 3));
+// console.log(removeVal([3,2,2,3], 3));
+
+// Return the index of the first occurrence of needle in haystack, or -1 if
+// needle is not part of haystack.
+// Input: haystack = "hello", needle = "ll"
+// Output: 2
+function strStr(haystack, needle) {
+  if (needle === "") return 0;
+  if (haystack.includes(needle)) return haystack.indexOf(needle);
+  return -1;
+}
+// console.log(strStr("hello", "ll"));
