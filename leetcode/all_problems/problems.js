@@ -14,13 +14,6 @@ function twoSum(nums, target) {
 }
 // console.log(twoSum([2, 7, 11, 15], 9));
 
-// Given a string, find the length of the longest substring without repeating characters.
-// Example:
-// Input: "abcabcbb"  Output: 3
-function lengthOfLongestSubstring(s) {
-
-}
-
 // Given a 32-bit signed integer, reverse digits of an integer.
 // Example:
 // Input: 123   Output: 321
@@ -39,13 +32,6 @@ function isPalindrome(num) {
   return num.toString() === num.toString().split('').reverse().join('');
 }
 // console.log(isPalindrome(121));
-
-// Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
-// Example:
-// Input: "IX"  Output: 9
-function romanToInt(s) {
-
-}
 
 // Write a function to find the longest common prefix string amongst an array of strings.
 var longestCommonPrefix = function(strs) {
@@ -69,11 +55,6 @@ var longestCommonPrefix = function(strs) {
   return result;
 }
 // console.log(longestCommonPrefix(['aa', 'aaasd', 'aad']))
-
-// Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
-var letterCombinations = function(digits) {
-
-}
 
 // Given a string containing just the characters '(', ')', '{', '}', '[' and ']',
 // determine if the input string is valid.
