@@ -96,5 +96,14 @@ function mergeTwoLists(l1, l2) {
 // Example: Input: n = 3
 // Output: ["((()))", "(()())", "(())()", "()(())", "()()()"]
 function generateParenthesis(n) {
+  let result = [];
+  combine(n, n, '');
+  return result;
 
+  function combine(left, right, str) {
+    if (!left && !right) result.push(str);
+    if (left) combine(left-1, right, str+'(');
+    if (right > left) combine(left, right-1, str+')');
+  }
 }
+console.log(generateParenthesis(3));
