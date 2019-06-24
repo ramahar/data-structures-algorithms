@@ -120,3 +120,13 @@ function removeDuplicates(nums) {
   return nums.length;
 }
 // console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
+
+// Given an array nums and a value val, remove all instances of that value
+// in-place and return the new length.
+function removeVal(nums, val) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === val) nums.splice(i, 1);
+  }
+  return nums.length;
+}
+console.log(removeVal([3,2,2,3], 3));
