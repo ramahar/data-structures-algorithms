@@ -106,4 +106,17 @@ function generateParenthesis(n) {
     if (right > left) combine(left, right-1, str+')');
   }
 }
-console.log(generateParenthesis(3));
+// console.log(generateParenthesis(3));
+
+// Given a sorted array nums, remove the duplicates in-place such that each
+// element appear only once and return the new length.
+function removeDuplicates(nums) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] == nums[i+1]) {
+      nums.splice(i, 1);
+      i--;
+    }
+  }
+  return nums.length;
+}
+// console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
