@@ -31,6 +31,8 @@ function fibonacci(n) {
 
 // Find the greatest common divisor of 2 numbers
 function greatestCommonDivisor(a, b) {
-  
+  if (b === 0) return a;
+  // Euclidean algorithm to find GCD 
+  else return greatestCommonDivisor(b, a%b);
 }
 console.log(greatestCommonDivisor(14, 21));
