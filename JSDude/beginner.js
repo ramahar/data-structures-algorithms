@@ -16,4 +16,15 @@ function primeFactors(num) {
   }
   return result;
 }
-console.log(primeFactors(10));
+// console.log(primeFactors(10));
+
+// Find nth fibonacci number
+function fibonacci(n) {
+  let memo = {};
+  if (memo[n]) return memo[n];
+
+  if (n === 0 || n === 1) return n;
+  memo[n] = fibonacci(n-1) + fibonacci(n-2);
+  return memo[n];
+} 
+console.log(fibonacci(12));

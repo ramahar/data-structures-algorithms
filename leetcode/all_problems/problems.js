@@ -144,9 +144,19 @@ function strStr(haystack, needle) {
 
 // Given a sorted array and a target value, return the index if the target is
 // found. If not, return the index where it would be if it were inserted in
-// order. Input: [1, 3, 5, 6], 5
-// Output: 2
+// order. Input: [1, 3, 5, 6], 5  Output: 2
+// Input: [1,3,5,6], 7   Output: 4 
 function searchInsert(arr, value) {
-
+  let start = 0; 
+  let end = arr.length-1;
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    if (arr[mid] < value) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+  return start;
 }
-console.log(searchInsert([1, 3, 5, 6], 5));
+console.log(searchInsert([1, 3, 5, 6], 7));
