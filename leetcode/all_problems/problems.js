@@ -141,3 +141,12 @@ function strStr(haystack, needle) {
   return -1;
 }
 // console.log(strStr("hello", "ll"));
+
+// Given a sorted array and a target value, return the index if the target is
+// found. If not, return the index where it would be if it were inserted in
+// order. Input: [1, 3, 5, 6], 5
+// Output: 2
+function searchInsert(arr, value) {
+
+}
+console.log(searchInsert([1, 3, 5, 6], 5));
