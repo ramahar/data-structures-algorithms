@@ -159,4 +159,18 @@ function searchInsert(arr, value) {
   }
   return start;
 }
-console.log(searchInsert([1, 3, 5, 6], 7));
+// console.log(searchInsert([1, 3, 5, 6], 7));
+
+// Implement pow(x, n), which calculates x raised to the power n (x^n).
+// Input: 2.00000, 10   Output: 1024.00000
+function pow(x, n) {
+  if (n === 0) return 1;
+  else if (n === 1) return x;
+  else if (n === -1) return 1/x;
+  else if (n % 2 === 0) {
+    let m = pow(x, n/2);  // 3^4 = 3^2 * 3^2
+    return m * m;
+  }
+  else return x * pow(x, n-1);  // 3^3 = 3 * 3^2
+}
+// console.log(pow(2, 10));
