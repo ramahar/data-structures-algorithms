@@ -27,4 +27,10 @@ function fibonacci(n) {
   memo[n] = fibonacci(n-1) + fibonacci(n-2);
   return memo[n];
 } 
-console.log(fibonacci(12));
+// console.log(fibonacci(12));
+
+// Find the greatest common divisor of 2 numbers
+function greatestCommonDivisor(a, b) {
+  
+}
+console.log(greatestCommonDivisor(14, 21));
