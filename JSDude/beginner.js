@@ -35,4 +35,32 @@ function greatestCommonDivisor(a, b) {
   // Euclidean algorithm to find GCD 
   else return greatestCommonDivisor(b, a%b);
 }
-console.log(greatestCommonDivisor(14, 21));
+// console.log(greatestCommonDivisor(14, 21));
+
+// Remove duplicates from an array
+function removeDuplicate(arr) {
+  let unique = {};
+  let result = [];
+  arr.forEach(el => {
+    if(!unique[el]) {
+      result.push(el);
+      unique[el] = true;
+    }
+  });
+  return result;
+}
+// console.log(removeDuplicate([1,3,3,3,1,5,6,7,8,1]));
+
+// Reverse a string
+function reverse(str) {
+  let result = '';
+  for (let i = str.length-1; i >= 0; i--) {
+    result += str[i];
+  }
+  return result;
+}
+
+// Merge 2 sorted arrays 
+function mergeSortedArrays(a, b) {
+
+}
