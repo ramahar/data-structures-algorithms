@@ -68,7 +68,7 @@ var isBalanced = function(root) {
 
     function getHeight(root) {
       if (!root) return 0;
-      return 1 + Math.max(getHeight(root.left) + getHeight(root.right));
+      return 1 + Math.max(getHeight(root.left), getHeight(root.right));
     }
 
     if (Math.abs(getHeight(root.left) - getHeight(root.right)) > 1) return false;
