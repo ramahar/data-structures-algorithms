@@ -57,7 +57,8 @@ function reverse(str) {
   else return reverse(str.substring(1)) + str.charAt(0);
 }
 
-// Merge 2 sorted arrays 
-function mergeSortedArrays(a, b) {
-
+// Reverse a sentence in place
+function reverseSentence(str) {
+  return str.split(" ").reverse().join(" ").split("").reverse().join("");
 }
+// console.log(reverseSentence("Hello World"));
