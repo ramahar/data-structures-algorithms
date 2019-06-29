@@ -51,13 +51,10 @@ function removeDuplicate(arr) {
 }
 // console.log(removeDuplicate([1,3,3,3,1,5,6,7,8,1]));
 
-// Reverse a string
+// Reverse a string using recursion 
 function reverse(str) {
-  let result = '';
-  for (let i = str.length-1; i >= 0; i--) {
-    result += str[i];
-  }
-  return result;
+  if (str === "") return "";
+  else return reverse(str.substring(1)) + str.charAt(0);
 }
 
 // Merge 2 sorted arrays 
