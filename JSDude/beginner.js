@@ -102,4 +102,19 @@ function twoSum(nums, target) {
   }
   return false; 
 }
-console.log(twoSum([6,4,3,2,1,7], 9));
+// console.log(twoSum([6,4,3,2,1,7], 9));
+
+// Given array, find the highest sum of 2 numbers
+function highestSum(nums) {
+  let first = 0; second = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > first) {
+      second = first;
+      first = nums[i];
+    } else if (nums[i] > second) {
+      second = nums[i];
+    }
+  }
+  return first + second;
+}
+// console.log(highestSum([7, 0, -4, 5, 2, 3]));
