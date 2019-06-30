@@ -62,3 +62,20 @@ function reverseSentence(str) {
   return str.split(" ").reverse().join(" ").split("").reverse().join("");
 }
 // console.log(reverseSentence("Hello World"));
+
+// Find first non-repeating character in string
+function firstNonRepeat(str) {
+  let charCount = {};
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (charCount[char]) {
+      charCount[char]++;
+    } else {
+      charCount[char] = 1;
+    }
+  }
+  for (var char in charCount) {
+    if (charCount[char] === 1) return char;
+  }
+}
+console.log(firstNonRepeat("abacddbec"));
