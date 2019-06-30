@@ -92,8 +92,14 @@ function isPalindrome(str) {
 }
 // console.log(isPalindrome("madam"));
 
-// Given an unsorted array containing n distinct numbers, find the one number missing from the array
-function missingNumber(nums) {
-
+// Given unsorted array, check if any 2 numbers will sum up to target
+function twoSum(nums, target) {
+  let obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    let diff = target - nums[i];
+    if (obj[diff]) return true;
+    else obj[nums[i]] = true;
+  }
+  return false; 
 }
-console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
+console.log(twoSum([6,4,3,2,1,7], 9));
