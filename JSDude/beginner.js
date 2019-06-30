@@ -90,4 +90,10 @@ function isPalindrome(str) {
     }
   }
 }
-console.log(isPalindrome("madam"));
+// console.log(isPalindrome("madam"));
+
+// Given an unsorted array containing n distinct numbers, find the one number missing from the array
+function missingNumber(nums) {
+
+}
+console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
