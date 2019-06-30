@@ -78,4 +78,16 @@ function firstNonRepeat(str) {
     if (charCount[char] === 1) return char;
   }
 }
-console.log(firstNonRepeat("abacddbec"));
+// console.log(firstNonRepeat("abacddbec"));
+
+// Check if a string is a palindrome 
+function isPalindrome(str) {
+  for (let i = 0; i < str.length/2; i++) {
+    if (str[i] === str[str.length-1-i]) {
+      return true;
+    } else {
+      return false; 
+    }
+  }
+}
+console.log(isPalindrome("madam"));
