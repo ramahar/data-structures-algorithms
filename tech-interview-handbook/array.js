@@ -8,4 +8,18 @@ function twoSum(nums, target) {
       map[nums[i]] = i;
     }
 }
-console.log(twoSum([2,7,11,15], 9))
+// console.log(twoSum([2,7,11,15], 9))
+
+// Given an array of stock prices, if only permitted to complete at most one transaction,
+// (i.e buy one and sell one share) design an algorithm to find the max profit
+function maxProfit(prices) {
+  let min = Infinity; 
+  let max = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    min = Math.min(min, prices[i]);
+    max = Math.max(max, prices[i] - min);
+  }
+  return max;
+}
+console.log(maxProfit([7,1,5,3,6,4]));
