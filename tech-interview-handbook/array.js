@@ -17,9 +17,16 @@ function maxProfit(prices) {
   let max = 0;
 
   for (let i = 0; i < prices.length; i++) {
+    // Keep track of lowest number and highest profit in every iteration 
     min = Math.min(min, prices[i]);
     max = Math.max(max, prices[i] - min);
   }
   return max;
 }
-console.log(maxProfit([7,1,5,3,6,4]));
+// console.log(maxProfit([7,1,5,3,6,4]));
+
+// Given an array of integers, find if the array contains any duplicates.
+function containsDuplicate(nums) {
+  return (new Set(nums).size !== nums.length);
+}
+// console.log(containsDuplicate([1,2,3,1]));
