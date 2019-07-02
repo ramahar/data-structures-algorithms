@@ -60,3 +60,24 @@ function maxSubArray(nums) {
   return Math.max(...nums);
 }
 // console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
+
+// Given an array with a duplicate, find the duplicate number in the array
+function findDuplicate(nums) {
+  // Use a linked list with 2 pointers. Duplicate is where the list runs into a loop
+  let slow = nums[0];
+  let fast = nums[nums[0]];
+
+  // Here fast moves 2 steps at a time
+  while (slow !== fast) {
+    slow = nums[slow];
+    fast = nums[nums[fast]];
+  }
+  fast = 0;
+  // Here fast moves 1 step at a time
+  while (slow !== fast) {
+    slow = nums[slow];
+    fast = nums[fast];
+  }
+  return slow;
+}
+console.log(findDuplicate([1,3,4,2,2]));
