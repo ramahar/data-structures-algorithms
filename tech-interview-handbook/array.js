@@ -30,3 +30,22 @@ function containsDuplicate(nums) {
   return (new Set(nums).size !== nums.length);
 }
 // console.log(containsDuplicate([1,2,3,1]));
+
+// Given an array of n integers, return an array output such that output[i]
+// is equal to the product of all elemnts of nums, except nums[i]
+function productExceptSelf(nums) {
+  let result = [];
+  let leftMult = 1;
+  let rightMult = 1;
+  // Break up into 2 parts: Left product and right product 
+  for (let i = nums.length-1; i >= 0; i--) {
+    result[i] = rightMult;
+    rightMult *= nums[i];
+  }
+  for (let j = 0; j < nums.length; j++) {
+    result[j] = leftMult;
+    leftMult *= nums[j];
+  }
+  return result;
+}
+console.log(productExceptSelf([1,2,3,4]));
