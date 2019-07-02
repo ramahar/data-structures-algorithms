@@ -48,4 +48,15 @@ function productExceptSelf(nums) {
   }
   return result;
 }
-console.log(productExceptSelf([1,2,3,4]));
+// console.log(productExceptSelf([1,2,3,4]));
+
+// Given an integer array nums, find the contiguous subarray which has 
+// the largest sum and return the sum
+function maxSubArray(nums) {
+  for (let i = 1; i < nums.length; i++) {
+    let maxSum = Math.max(nums[i], nums[i] + nums[i-1]);
+    nums[i] = maxSum;
+  }
+  return Math.max(...nums);
+}
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
