@@ -20,3 +20,17 @@ function coinChange(coins, amount) {
 
 }
 // console.log(coinChange([1,2,5], 11));
+
+// Given an array, you are initially positioned at the 1st index of the array.
+// Each element in the array represents your maximum jump length at that position.
+// Determine if you are able to reach the last index.
+function canJump(nums) {
+  let max = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    // Return false if no. of max steps cannot reach position i 
+    if (max < i) return false;
+    max = Math.max(nums[i] + i, max);
+  }
+  return true;
+}
+// console.log(canJump([2,3,1,1,4]));
