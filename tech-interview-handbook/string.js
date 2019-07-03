@@ -23,3 +23,12 @@ function validParentheses(s) {
   return stack.length === 0;
 }
 // console.log(validParentheses("(){}[]"));
+
+// Given a string, determine if it is a palindrome
+function isPalindrome(str) {
+  let formatted = str.replace(/\W/g, '');
+  let reversed = str.split('').reverse().join('');
+
+  return formatted.toLowerCase() === reversed.toLowerCase();
+}
+console.log(isPalindrome("ababa"));
