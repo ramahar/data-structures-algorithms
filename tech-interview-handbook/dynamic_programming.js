@@ -34,3 +34,18 @@ function canJump(nums) {
   return true;
 }
 // console.log(canJump([2,3,1,1,4]));
+
+// Given an array of integers representing money in each house, determine the max
+// amount of money you can rob without robbing 2 adjacent houses
+function rob(nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return nums[0];
+
+  let result = [nums[0], Math.max(nums[0], nums[1])];
+  for (let i = 2; i < nums.length; i++) {
+    // Store the max amount of money possible, with amount increasing
+    result[i] = Math.max(result[i-1], result[i-2] + nums[i]);
+  }
+  return result[result.length-1];
+}
+// console.log(rob([1,2,3,1]));
