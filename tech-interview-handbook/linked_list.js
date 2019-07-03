@@ -32,3 +32,29 @@ function mergeTwoLists(l1, l2) {
   l1.next = mergeTwoLists(l1.next, l2);
   return l1;
 }
+
+// Remove nth node from the end of a linked list 
+function removeNth(head, n) {
+  let curr = head;
+  // Two pointers, 2nd pointer is n ahead of the 1st 
+  let slow = head;
+  let fast = head;
+
+  // Set 2nd pointer to be n ahead
+  for (let i = 0; i < n; i++) {
+    fast = fast.next;
+  }
+
+  // If pointer 2 doesn't exist, we need to remove head of the list
+  if (!fast) return curr.next;
+
+  // Move both pointers until fast reaches the end
+  while (fast.next) {
+    slow = slow.next;
+    fast = fast.next;
+  }
+
+  // Remove nth node 
+  slow.next = slow.next.next;
+  return curr;
+}
