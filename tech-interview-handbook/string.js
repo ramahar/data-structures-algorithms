@@ -31,4 +31,10 @@ function isPalindrome(str) {
 
   return formatted.toLowerCase() === reversed.toLowerCase();
 }
-console.log(isPalindrome("ababa"));
+// console.log(isPalindrome("ababa"));
+
+// Given a string s, find the longest palindromic substring in s
+function longestPalindrome(s) {
+  
+}
+// https://leetcode.com/problems/longest-palindromic-substring/discuss/2926/Share-my-concise-JavaScript-solution
