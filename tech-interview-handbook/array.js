@@ -123,3 +123,15 @@ function intersection2(nums1, nums2) {
   return [...new Set(filtered)];
 }
 // console.log(intersection([1, 2, 5], [2, 7]));
+
+// Flatten an array of arrays
+function flatten(arr) {
+  let result = [];
+  if (!Array.isArray(arr)) return [arr];
+
+  for (let i = 0; i < arr.length; i++) {
+    result = result.concat(flatten(arr[i]));
+  }
+  return result;
+}
+console.log(flatten([1,[2,[3]],[4]]));
