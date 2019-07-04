@@ -33,6 +33,14 @@ function isPalindrome(str) {
 }
 // console.log(isPalindrome("ababa"));
 
+// Reverse a string using recursion
+function reverse(s) {
+  if (s === "") return "";
+
+  return reverse(s.substring(1)) + s.charAt(0);
+}
+// console.log(reverse("hello"));
+
 // Given a string, find the index of first unique character
 function firstUnique(s) {
   for (let i = 0; i < s.length; i++) {
@@ -43,7 +51,7 @@ function firstUnique(s) {
   }
   return -1;
 }
-console.log(firstUnique('aabbeeuc'));
+// console.log(firstUnique('aabbeeuc'));
 
 // Given a string s, find the longest palindromic substring in s
 function longestPalindrome(s) {
