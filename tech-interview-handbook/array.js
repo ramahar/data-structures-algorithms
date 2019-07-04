@@ -10,6 +10,21 @@ function twoSum(nums, target) {
 }
 // console.log(twoSum([2,7,11,15], 9))
 
+// Given a sorted array and a target value, return the index if the target is found. 
+// If not, return the index where it would be if it were inserted in order.
+function searchInsert(nums, target) {
+  let start = 0;
+  let end = nums.length-1;
+  
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    if (target > nums[mid]) start = mid + 1;
+    else end = mid - 1;
+  }
+  return start;   // Index if inserted in order 
+}
+console.log(searchInsert([1,3,5,6], 5));
+
 // Given an array of stock prices, if only permitted to complete at most one transaction,
 // (i.e buy one and sell one share) design an algorithm to find the max profit
 function maxProfit(prices) {
