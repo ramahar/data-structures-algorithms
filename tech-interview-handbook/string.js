@@ -58,3 +58,8 @@ function longestPalindrome(s) {
 
 }
 // https://leetcode.com/problems/longest-palindromic-substring/discuss/2926/Share-my-concise-JavaScript-solution
+
+// Find all permutations of a string
+function permutations(s) {
+  
+}
