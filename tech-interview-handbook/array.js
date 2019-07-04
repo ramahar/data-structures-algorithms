@@ -107,4 +107,4 @@ function intersection2(nums1, nums2) {
   let filtered = nums2.filter(el => set.has(el));
   return [...new Set(filtered)];
 }
-console.log(intersection([1, 2, 5], [2, 7]));
+// console.log(intersection([1, 2, 5], [2, 7]));
