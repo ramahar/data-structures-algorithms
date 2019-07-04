@@ -21,6 +21,17 @@ function hasCycle(head) {
   return false; 
 }
 
+// Find the middle node of a linked list
+function middleNode(head) {
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    slow = fast.next;
+  }
+  return slow;
+}
+
 // Merge two sorted linked lists and return it as a new list. 
 // The new list should be made by splicing together the nodes of the two lists.
 function mergeTwoLists(l1, l2) {
