@@ -95,4 +95,16 @@ function missingNumber(arr) {
   }
   return expected - sum; 
 }
-console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
+// console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
+
+// Find the intersection of 2 arrays
+function intersection(nums1, nums2) {
+  return nums1.filter(el => nums2.includes(el));
+}
+// Faster alternative using set
+function intersection2(nums1, nums2) {
+  let set = new Set(nums1);
+  let filtered = nums2.filter(el => set.has(el));
+  return [...new Set(filtered)];
+}
+console.log(intersection([1, 2, 5], [2, 7]));
