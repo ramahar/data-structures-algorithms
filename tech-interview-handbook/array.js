@@ -80,4 +80,19 @@ function findDuplicate(nums) {
   }
   return slow;
 }
-console.log(findDuplicate([1,3,4,2,2]));
+// console.log(findDuplicate([1,3,4,2,2]));
+
+// Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
+// find the one that is missing from the array.
+function missingNumber(arr) {
+  // Sum of a sequence = n * (n+1)/2
+  let sum = 0;
+  let expected = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    expected += i + 1;
+  }
+  return expected - sum; 
+}
+console.log(missingNumber([9,6,4,2,3,5,7,0,1]));

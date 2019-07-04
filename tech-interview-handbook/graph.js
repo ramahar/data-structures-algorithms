@@ -53,3 +53,4 @@ function canFinish(numCourses, prerequisites) {
 console.log(canFinish(2, [[1,0]] ));
 
 // https://leetcode.com/problems/course-schedule/discuss/146325/JavaScript-DFS
+// https://github.com/jameshawkinsjr/lc-problems/blob/master/medium/207.js
