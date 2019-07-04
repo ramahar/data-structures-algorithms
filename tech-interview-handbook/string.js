@@ -33,8 +33,20 @@ function isPalindrome(str) {
 }
 // console.log(isPalindrome("ababa"));
 
+// Given a string, find the index of first unique character
+function firstUnique(s) {
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    if (s.indexOf(char) === s.lastIndexOf(char)) {
+      return i;
+    }
+  }
+  return -1;
+}
+console.log(firstUnique('aabbeeuc'));
+
 // Given a string s, find the longest palindromic substring in s
 function longestPalindrome(s) {
-  
+
 }
 // https://leetcode.com/problems/longest-palindromic-substring/discuss/2926/Share-my-concise-JavaScript-solution
