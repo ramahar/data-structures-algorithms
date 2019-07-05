@@ -23,12 +23,12 @@ function searchInsert(nums, target) {
   }
   return start;   // Index if inserted in order 
 }
-console.log(searchInsert([1,3,5,6], 5));
+// console.log(searchInsert([1,3,5,6], 5));
 
 // Given an array of stock prices, if only permitted to complete at most one transaction,
 // (i.e buy one and sell one share) design an algorithm to find the max profit
 function maxProfit(prices) {
-  let min = Infinity; 
+  let min = prices[0]; 
   let max = 0;
 
   for (let i = 0; i < prices.length; i++) {
@@ -46,6 +46,18 @@ function containsDuplicate(nums) {
 }
 // console.log(containsDuplicate([1,2,3,1]));
 
+// Find the intersection of 2 arrays
+function intersection(nums1, nums2) {
+  return nums1.filter(el => nums2.includes(el));
+}
+// Faster alternative using set
+function intersection2(nums1, nums2) {
+  let set = new Set(nums1);
+  let filtered = nums2.filter(el => set.has(el));
+  return [...new Set(filtered)];
+}
+// console.log(intersection([1, 2, 5], [2, 7]));
+
 // Given an array of n integers, return an array output such that output[i]
 // is equal to the product of all elemnts of nums, except nums[i]
 function productExceptSelf(nums) {
@@ -58,7 +70,7 @@ function productExceptSelf(nums) {
     rightMult *= nums[i];
   }
   for (let j = 0; j < nums.length; j++) {
-    result[j] = leftMult;
+    result[j] *= leftMult;
     leftMult *= nums[j];
   }
   return result;
@@ -111,18 +123,6 @@ function missingNumber(arr) {
   return expected - sum; 
 }
 // console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
-
-// Find the intersection of 2 arrays
-function intersection(nums1, nums2) {
-  return nums1.filter(el => nums2.includes(el));
-}
-// Faster alternative using set
-function intersection2(nums1, nums2) {
-  let set = new Set(nums1);
-  let filtered = nums2.filter(el => set.has(el));
-  return [...new Set(filtered)];
-}
-// console.log(intersection([1, 2, 5], [2, 7]));
 
 // Flatten an array of arrays
 function flatten(arr) {
