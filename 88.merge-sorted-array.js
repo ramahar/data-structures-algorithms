@@ -13,17 +13,17 @@
 
  // Greedy. Start from back. Time Complexity: O(n)
 var merge = function(nums1, m, nums2, n) {
-    let i = m + n;
+    let len = m + n;
     m--;
     n--;
 
     // Iterate until total length >= 0
-    while (i--) {
+    while (len--) {
       // If nothing is left in nums2, or if element in nums1 is bigger
       if (n < 0 || nums1[m] > nums2[n]) {
-        nums1[i] = nums1[m--];
+        nums1[len] = nums1[m--];
       } else {
-        nums1[i] = nums2[n--];
+        nums1[len] = nums2[n--];
       }
     }
 };

@@ -16,7 +16,29 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
+
 var levelOrder = function(root) {
+  if (!root) return [];
+  let result = [];
+  let stack = [];
+  stack.push(root);
+
+  while (stack.length) {
+    let size = stack.length;  // Important!
+    let temp = [];
+    for (let i = 0; i < size; i++) {
+    let node = stack.shift();
+    temp.push(node.val);
+
+    if (node.left) stack.push(node.left);
+    if (node.right) stack.push(node.right);
+  }
+  result.push(temp);
+}
+  return result;
+}
+
+var levelOrder1 = function(root) {
     let result = [];
     function traverse(node, level) {
       if (!node) return;

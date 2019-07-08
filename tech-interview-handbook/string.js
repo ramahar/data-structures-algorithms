@@ -4,34 +4,14 @@ function isAnagram(s, t) {
 }
 // console.log(isAnagram("anagram", "nagaram"));
 
-// Given a string containing just the characters '(', ')', '{', '}', '[' and ']', 
-// determine if the input string is valid. (Open brackets must be closed by same type of brackets)
-function validParentheses(s) {
-  let pairs = {
-    "(":")",
-    "{":"}",
-    "[":"]"
-  }
-  let stack = [];
-  for (let i = 0; i < s.length; i++) {
-    let el = s[i];
-    if (pairs[el]) stack.push(pairs[el]);
-    else {
-      if (el !== stack.pop()) return false;
-    }
-  }
-  return stack.length === 0;
-}
-// console.log(validParentheses("(){}[]"));
-
 // Given a string, determine if it is a palindrome
 function isPalindrome(str) {
-  let formatted = str.replace(/\W/g, '');
+  let formatted = str.toLowerCase().replace(/\W/g, '');
   let reversed = str.split('').reverse().join('');
 
   return formatted.toLowerCase() === reversed.toLowerCase();
 }
-// console.log(isPalindrome("ababa"));
+// console.log(isPalindrome("A man, a plan, a canal. Panama"));
 
 // Reverse a string using recursion
 function reverse(s) {
@@ -52,6 +32,26 @@ function firstUnique(s) {
   return -1;
 }
 // console.log(firstUnique('aabbeeuc'));
+
+// Given a string containing just the characters '(', ')', '{', '}', '[' and ']', 
+// determine if the input string is valid. (Open brackets must be closed by same type of brackets)
+function validParentheses(s) {
+  let pairs = {
+    "(":")",
+    "{":"}",
+    "[":"]"
+  }
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let el = s[i];
+    if (pairs[el]) stack.push(pairs[el]);
+    else {
+      if (el !== stack.pop()) return false;
+    }
+  }
+  return stack.length === 0;
+}
+// console.log(validParentheses("(){}[]"));
 
 // Given a string s, find the longest palindromic substring in s
 function longestPalindrome(s) {

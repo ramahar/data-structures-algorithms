@@ -58,56 +58,16 @@ function intersection2(nums1, nums2) {
 }
 // console.log(intersection([1, 2, 5], [2, 7]));
 
-// Given an array of n integers, return an array output such that output[i]
-// is equal to the product of all elemnts of nums, except nums[i]
-function productExceptSelf(nums) {
-  let result = [];
-  let leftMult = 1;
-  let rightMult = 1;
-  // Break up into 2 parts: Left product and right product 
-  for (let i = nums.length-1; i >= 0; i--) {
-    result[i] = rightMult;
-    rightMult *= nums[i];
-  }
-  for (let j = 0; j < nums.length; j++) {
-    result[j] *= leftMult;
-    leftMult *= nums[j];
-  }
-  return result;
-}
-// console.log(productExceptSelf([1,2,3,4]));
-
 // Given an integer array nums, find the contiguous subarray which has 
 // the largest sum and return the sum
-function maxSubArray(nums) {
+function maxSubArraySum(nums) {
   for (let i = 1; i < nums.length; i++) {
     let maxSum = Math.max(nums[i], nums[i] + nums[i-1]);
     nums[i] = maxSum;
   }
   return Math.max(...nums);
 }
-// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
-
-// Given an array with a duplicate, find the duplicate number in the array
-function findDuplicate(nums) {
-  // Use a linked list with 2 pointers. Duplicate is where the list runs into a loop
-  let slow = nums[0];
-  let fast = nums[nums[0]];
-
-  // Here fast moves 2 steps at a time
-  while (slow !== fast) {
-    slow = nums[slow];
-    fast = nums[nums[fast]];
-  }
-  fast = 0;
-  // Here fast moves 1 step at a time
-  while (slow !== fast) {
-    slow = nums[slow];
-    fast = nums[fast];
-  }
-  return slow;
-}
-// console.log(findDuplicate([1,3,4,2,2]));
+// console.log(maxSubArraySum([-2,1,-3,4,-1,2,1,-5,4]));
 
 // Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
 // find the one that is missing from the array.
@@ -135,3 +95,43 @@ function flatten(arr) {
   return result;
 }
 // console.log(flatten([1,[2,[3]],[4]]));
+
+// Given an array with a duplicate, find the duplicate number in the array
+function findDuplicate(nums) {
+  // Use a linked list with 2 pointers. Duplicate is where the list runs into a loop
+  let slow = nums[0];
+  let fast = nums[slow];
+
+  // Here fast moves 2 steps at a time
+  while (slow !== fast) {
+    slow = nums[slow];
+    fast = nums[nums[fast]];
+  }
+  fast = 0;
+  // Here fast moves 1 step at a time
+  while (slow !== fast) {
+    slow = nums[slow];
+    fast = nums[fast];
+  }
+  return slow;
+}
+// console.log(findDuplicate([1,3,4,2,2]));
+
+// Given an array of n integers, return an array output such that output[i]
+// is equal to the product of all elemnts of nums, except nums[i]
+function productExceptSelf(nums) {
+  let result = [];
+  let leftMult = 1;
+  let rightMult = 1;
+  // Break up into 2 parts: Left product and right product 
+  for (let i = nums.length-1; i >= 0; i--) {
+    result[i] = rightMult;
+    rightMult *= nums[i];
+  }
+  for (let j = 0; j < nums.length; j++) {
+    result[j] *= leftMult;
+    leftMult *= nums[j];
+  }
+  return result;
+}
+// console.log(productExceptSelf([1,2,3,4]));
