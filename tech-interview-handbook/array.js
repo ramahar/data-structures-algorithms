@@ -135,3 +135,9 @@ function productExceptSelf(nums) {
   return result;
 }
 // console.log(productExceptSelf([1,2,3,4]));
+
+// In an unsorted array of words, hasWord (word) which receives a word and 
+// returns true if it is in the array and false otherwise.
+function hasWord(word) {
+  
+}
