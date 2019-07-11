@@ -1,17 +1,25 @@
 // You are climbing a staircase of n steps. Each time you can either climb 1 or 2 steps. 
 // In how many distinct ways can you climb to the top?
 function climbStairs(n) {
+  if (n < 3) return n;
   let memo = {};
   if (memo[n]) return memo[n];
-
-  if (n === 0) return 0;
-  if (n === 1) return 1;
-  if (n === 2) return 2;
-
-  memo[n] = climbStairs(n-1) + climbStairs(n-2);
+  else {
+    memo[n] = climbStairs(n-1) + climbStairs(n-2);
+  }
   return memo[n];
 }
 // console.log(climbStairs(3));
+// ALTERNATE
+function climbStairs(n) {
+  if (n < 3 && n > 0) return n;
+
+  let arr = [1, 2];
+  for (let i = 2; i < n; i++) {
+    arr[i] = arr[i-1] + arr[i-2];
+  }
+  return arr.pop();
+}
 
 // You are given coins of different denominations and a total amount of money amount. 
 // Write a function to compute the fewest number of coins that you need to make up that
