@@ -83,11 +83,8 @@ function firstNonRepeat(str) {
 // Check if a string is a palindrome 
 function isPalindrome(str) {
   for (let i = 0; i < str.length/2; i++) {
-    if (str[i] === str[str.length-1-i]) {
-      return true;
-    } else {
-      return false; 
-    }
+    if (str[i] === str[str.length-1-i]) return true;
+    else return false; 
   }
 }
 // console.log(isPalindrome("madam"));

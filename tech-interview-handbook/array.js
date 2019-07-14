@@ -87,14 +87,14 @@ function missingNumber(arr) {
 // Flatten an array of arrays
 function flatten(arr) {
   let result = [];
-  if (!Array.isArray(arr)) return [arr];
-
+  
   for (let i = 0; i < arr.length; i++) {
-    result = result.concat(flatten(arr[i]));
+    if (!Array.isArray(arr[i])) result.push(arr[i]); 
+    else result = result.concat(flatten(arr[i]));
   }
   return result;
 }
-// console.log(flatten([1,[2,[3]],[4]]));
+console.log(flatten([1,[2,[3]],[4]]));
 
 // Given an array with a duplicate, find the duplicate number in the array
 function findDuplicate(nums) {

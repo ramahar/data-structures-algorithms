@@ -26,8 +26,8 @@ function middleNode(head) {
   let slow = head;
   let fast = head;
   while (fast && fast.next) {
-    fast = fast.next.next;
     slow = fast.next;
+    fast = fast.next.next;
   }
   return slow;
 }
