@@ -14,4 +14,4 @@ function fib(n) {
   memo[n] = fib(n-1) + fib(n-2);
   return memo[n];
 }
-console.log(fib(12));
+// console.log(fib(12));
