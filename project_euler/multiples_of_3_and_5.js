@@ -8,4 +8,4 @@ function multiples() {
   .filter(el => el % 5 === 0 || el % 3 === 0)
   .reduce((acc, n) => acc + n)
 }
-console.log(multiples());
+// console.log(multiples());
