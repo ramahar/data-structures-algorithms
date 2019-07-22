@@ -2,11 +2,7 @@
 // Input: [1,2,3,1]
 // Output: true
 function containsDuplicate(nums) {
-  let dups = {};
-  for (let i = 0; i < nums.length; i++) {
-    if (dups[nums[i]]) return true;
-    dups[nums[i]] = nums[i];
-  }
-  return false;
+  let set = new Set(nums);
+  return set.size !== nums.length;
 }
-console.log(containsDuplicate([1,2,3,1]))
+// console.log(containsDuplicate([0,4,5,0,3,6]));
