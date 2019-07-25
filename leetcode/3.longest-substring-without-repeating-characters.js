@@ -16,12 +16,13 @@ var lengthOfLongestSubstring = function(s) {
 
   for (let i = 0; i < s.length; i++) {
     let char = s[i];
-    // Remove everything from before duplicate, then push char to result array 
+    //? IMPORTANT STEP 
     result = result.slice(result.indexOf(char) + 1)
     max = Math.max(result.push(char), max);   // Push returns length of array
   }
   return max;
 }
+// console.log(lengthOfLongestSubstring("abcabcbb"));
 
  // Brute force: Loop through string twice, checking every substring
  // against every other substring, and finding max length where
