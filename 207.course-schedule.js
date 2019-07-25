@@ -63,4 +63,32 @@ var canFinish = function(numCourses, prerequisites) {
         this.clear = false;   // Course cleared or not
       }
     }
+    let courses = [];
+    for (let i = 0; i < numCourses; i++) courses[i] = new Course();
+
+    prerequisites.forEach(([a,b]) => {
+      courses[a].numPrerequisites++;
+      courses[b].isPrerequisiteFor.push(a);
+    });
+
+    let finished = 0;   // How many courses can be finished
+    let prev = -1;    // Trace value of finished 
+
+    // Terminate loop if we cannot find a new course to be finished in 1 iteration
+    while (finished > prev) {
+      prev = finished;
+
+      for (let i = 0; i < numCourses; i++) {
+        // Either no prereqs or all prereqs fulfilled 
+        if (courses[i].numPrerequisites === 0 && !courses[i].clear) {
+          //? Important 
+          courses[i].isPrerequisiteFor.forEach((j) => {
+            courses[j].numPrerequisites--;
+          });
+          courses[i].clear = true;
+          finished++;
+        }
+      }
+    }
+    return finished === numCourses;
 };
