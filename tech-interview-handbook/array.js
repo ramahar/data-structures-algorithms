@@ -117,23 +117,6 @@ function findDuplicate(nums) {
 }
 // console.log(findDuplicate([1,3,4,2,2]));
 
-function findDuplicate2(nums) {
-  let count = {};
-  for (let i = 0; i < nums.length; i++) {
-    let el = nums[i];
-    if (count[el]) {
-      count[el]++;
-    } else {
-      count[el] = 1;
-    }
-  }
-  for (num in count) {
-    if (count[num] > 1) return num;
-  }
-}
-console.log(findDuplicate2([1,3,4,2,2]));
-
-
 // Given an array of n integers, return an array output such that output[i]
 // is equal to the product of all elemnts of nums, except nums[i]
 function productExceptSelf(nums) {
@@ -155,10 +138,14 @@ function productExceptSelf(nums) {
 
 // In an unsorted array of words, hasWord (word) which receives a word and 
 // returns true if it is in the array and false otherwise.
-function hasWord(word) {
-  
+function hasWord(arr, word) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === word) return true;
+  }
+  return false;
 }
+console.log(hasWord(["one", "two", "three", "four", "five"], "two"));
 
 function productExceptSelf(nums) {
-  
+
 }
