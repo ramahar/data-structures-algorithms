@@ -94,7 +94,7 @@ function flatten(arr) {
   }
   return result;
 }
-console.log(flatten([1,[2,[3]],[4]]));
+// console.log(flatten([1,[2,[3]],[4]]));
 
 // Given an array with a duplicate, find the duplicate number in the array
 function findDuplicate(nums) {
@@ -116,6 +116,23 @@ function findDuplicate(nums) {
   return slow;
 }
 // console.log(findDuplicate([1,3,4,2,2]));
+
+function findDuplicate2(nums) {
+  let count = {};
+  for (let i = 0; i < nums.length; i++) {
+    let el = nums[i];
+    if (count[el]) {
+      count[el]++;
+    } else {
+      count[el] = 1;
+    }
+  }
+  for (num in count) {
+    if (count[num] > 1) return num;
+  }
+}
+console.log(findDuplicate2([1,3,4,2,2]));
+
 
 // Given an array of n integers, return an array output such that output[i]
 // is equal to the product of all elemnts of nums, except nums[i]
