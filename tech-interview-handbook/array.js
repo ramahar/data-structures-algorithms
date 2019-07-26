@@ -139,7 +139,7 @@ function productExceptSelf(nums) {
 // Given an integer array nums, find the contiguous subarray within an array (containing at least one number) 
 // which has the largest product.
 function maxProduct(nums) {
-  let result = -Number.MAX_VALUE;
+  let result = -Number.MAX_VALUE;   // To handle negative * negative 
   let min = 1;
   let max = 1;
 
