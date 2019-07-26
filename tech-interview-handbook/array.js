@@ -136,13 +136,20 @@ function productExceptSelf(nums) {
 }
 // console.log(productExceptSelf([1,2,3,4]));
 
-// Given an integer array nums, find the contiguous subarray which has 
-// the largest sum and return the sum
-function maxSubArraySum(nums) {
-  let max = 0;
-  for (let i = 1; i < nums.length; i++) {
-    max = Math.max(nums[i], nums[i] + nums[i-1]);
-    nums[i] = max;
+// Given an integer array nums, find the contiguous subarray within an array (containing at least one number) 
+// which has the largest product.
+function maxProduct(nums) {
+  let result = -Number.MAX_VALUE;
+  let min = 1;
+  let max = 1;
+
+  for (let num of nums) {
+    let currMin = Math.min(num, num * min, num * max);
+    let currMax = Math.max(num, num * min, num * max);
+
+    [min, max] = [currMin, currMax];
+    result = Math.max(result, max);
   }
-  return Math.max(...nums);
+  return result; 
 }
+// console.log(maxProduct([-2,3,-4]));
