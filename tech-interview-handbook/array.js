@@ -136,16 +136,19 @@ function productExceptSelf(nums) {
 }
 // console.log(productExceptSelf([1,2,3,4]));
 
-// In an unsorted array of words, hasWord (word) which receives a word and 
-// returns true if it is in the array and false otherwise.
-function hasWord(arr, word) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === word) return true;
-  }
-  return false;
-}
-console.log(hasWord(["one", "two", "three", "four", "five"], "two"));
-
 function productExceptSelf(nums) {
+  let result = [];
+  let rightMult = 1;
+  let leftMult = 1;
 
+  for (let i = nums.length-1; i >= 0; i--) {
+    result[i] = rightMult;
+    rightMult *= nums[i];
+  }
+  
+  for (let j = 0; j < nums.length; j++) {
+    result[j] *= leftMult;
+    leftMult *= nums[j];
+  }
+  return result;
 }
