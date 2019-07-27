@@ -9,25 +9,17 @@ function climbStairs(n) {
   }
   return memo[n];
 }
-// console.log(climbStairs(3));
-// ALTERNATE
+// DP SOLUTION
 function climbStairs(n) {
-  if (n < 3 && n > 0) return n;
+  if(n < 3 && n >= 0) return n;
 
-  let arr = [1, 2];
-  for (let i = 2; i < n; i++) {
-    arr[i] = arr[i-1] + arr[i-2];
-  }
-  return arr.pop();
+  var arr = [1,2]
+  for(let i = 2; i < n; i++) {
+	  arr[i] = arr[i-1] + arr[i-2]
 }
-
-// You are given coins of different denominations and a total amount of money amount. 
-// Write a function to compute the fewest number of coins that you need to make up that
-// amount. If that amount of money cannot be made up by any combination of the coins, return -1
-function coinChange(coins, amount) {
-
+  return arr[n-1];
 }
-// console.log(coinChange([1,2,5], 11));
+// console.log(climbStairs(3));
 
 // Given an array, you are initially positioned at the 1st index of the array.
 // Each element in the array represents your maximum jump length at that position.
@@ -48,7 +40,7 @@ function canJump(nums) {
 function rob(nums) {
   if (nums.length === 0) return 0;
   if (nums.length === 1) return nums[0];
-
+  
   let result = [nums[0], Math.max(nums[0], nums[1])];
   for (let i = 2; i < nums.length; i++) {
     // Store the max amount of money possible, with amount increasing
@@ -57,3 +49,25 @@ function rob(nums) {
   return result[result.length-1];
 }
 // console.log(rob([1,2,3,1]));
+
+function longestIncreasingSubsequence(nums) {
+  if (nums.length === 0) return 0;
+
+  var result = [];
+	for (var i = 0; i < nums.length; i++) {
+    result.push(1);
+		for (var j = 0; j < i; j++) {
+      // Ensure subsequence is increasing 
+      if (nums[j] < nums[i]) result[i] = Math.max(result[i], result[j] + 1);
+		}
+	}
+  return Math.max(...result);
+}
+
+// You are given coins of different denominations and a total amount of money amount. 
+// Write a function to compute the fewest number of coins that you need to make up that
+// amount. If that amount of money cannot be made up by any combination of the coins, return -1
+function coinChange(coins, amount) {
+
+}
+// console.log(coinChange([1,2,5], 11));
