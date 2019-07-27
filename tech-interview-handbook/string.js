@@ -53,6 +53,20 @@ function validParentheses(s) {
 }
 // console.log(validParentheses("(){}[]"));
 
+// Given a string, find the length of the longest substring without repeating characters.
+function lengthOfLongestSubstring(s) {
+  let result = [];
+  let max = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    result = result.slice(result.indexOf(char) + 1);
+    max = Math.max(max, result.push(char));
+  }
+  return max;
+}
+// console.log(lengthOfLongestSubstring("abcabcbb"));
+
 // Given a string s, find the longest palindromic substring in s
 function longestPalindrome(s) {
 
