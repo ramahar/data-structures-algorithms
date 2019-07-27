@@ -67,6 +67,22 @@ function lengthOfLongestSubstring(s) {
 }
 // console.log(lengthOfLongestSubstring("abcabcbb"));
 
+// Given array of strings, group anagrams together
+var groupAnagrams = function(strs) {
+  let map = {};
+  
+  for (let str of strs) {
+    let key = str.split('').sort().join('');
+    // No anagrams to group
+    if (!map[key]) map[key] = [];
+    
+    map[key].push(str);
+  }
+  // Group of anagrams is stored as object values 
+  return Object.values(map);
+};
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+
 // Given a string s, find the longest palindromic substring in s
 function longestPalindrome(s) {
 
