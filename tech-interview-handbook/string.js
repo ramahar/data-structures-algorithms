@@ -25,9 +25,7 @@ function reverse(s) {
 function firstUnique(s) {
   for (let i = 0; i < s.length; i++) {
     let char = s[i];
-    if (s.indexOf(char) === s.lastIndexOf(char)) {
-      return i;
-    }
+    if (s.indexOf(char) === s.lastIndexOf(char)) return i;
   }
   return -1;
 }
@@ -82,6 +80,18 @@ var groupAnagrams = function(strs) {
   return Object.values(map);
 };
 // console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+
+// Given a string, count how many palindromic substrings in this string.
+var countSubstrings = function(s) {
+  let c=0;
+  for(let i=0;i<s.length;i++){
+      for(let j=i;j<s.length;j++){
+          if(isPalindrome(s.substring(i,j+1)))
+           c++;   
+      }
+  }
+  return c;
+};
 
 // Given a string s, find the longest palindromic substring in s
 function longestPalindrome(s) {

@@ -60,14 +60,14 @@ function intersection2(nums1, nums2) {
 
 // Given an integer array nums, find the contiguous subarray which has 
 // the largest sum and return the sum
-function maxSubArraySum(nums) {
+function maxSubArray(nums) {
   for (let i = 1; i < nums.length; i++) {
     let maxSum = Math.max(nums[i], nums[i] + nums[i-1]);
     nums[i] = maxSum;
   }
   return Math.max(...nums);
 }
-// console.log(maxSubArraySum([-2,1,-3,4,-1,2,1,-5,4]));
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
 
 // Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
 // find the one that is missing from the array.
@@ -153,3 +153,18 @@ function maxProduct(nums) {
   return result; 
 }
 // console.log(maxProduct([-2,3,-4]));
+
+// Given an integer array nums, find the sum of the elements between indices 
+// i and j (i ≤ j), inclusive.
+NumArray.prototype.sumRange = function(i, j) {
+
+}
+function sum(nums) {
+  this.sums = [];
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+    // Cache sum for future calculations 
+    this.sums.push(sum);
+  }
+}
