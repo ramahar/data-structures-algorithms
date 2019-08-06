@@ -156,15 +156,16 @@ function maxProduct(nums) {
 
 // Given an integer array nums, find the sum of the elements between indices 
 // i and j (i ≤ j), inclusive.
-NumArray.prototype.sumRange = function(i, j) {
-
+//  Your NumArray object will be instantiated and called as such:
+//  var numArray = new NumArray(nums);
+//  numArray.sumRange(0, 1);
+function NumArray(nums) {
+  this.sum = nums;
 }
-function sum(nums) {
-  this.sums = [];
-  let sum = 0;
-  for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
-    // Cache sum for future calculations 
-    this.sums.push(sum);
+NumArray.prototype.sumRange = function(i, j) {
+  let sum = 0; 
+  for (let idx = i; idx <= j; idx++) {
+    sum += this.sum[idx];
   }
+  return sum;
 }
