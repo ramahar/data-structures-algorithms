@@ -169,3 +169,17 @@ NumArray.prototype.sumRange = function(i, j) {
   }
   return sum;
 }
+
+// Convert array to object
+const arrayToObject = (array) =>
+   array.reduce((obj, item) => {
+     obj[item.id] = item
+     return obj
+   }, {});
+
+// Abstract reusable code with chosen key instead of ID 
+const arrayToObject = (array, keyField) =>
+   array.reduce((obj, item) => {
+     obj[item[keyField]] = item
+     return obj
+   }, {})
