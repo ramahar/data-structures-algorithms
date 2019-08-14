@@ -206,3 +206,30 @@ function maxProfit(prices) {
   return max;
 }
 // console.log(maxProfit([7,1,5,3,6,4]));
+
+function productExceptSelf(arr) {
+  let left = 1; right = 1;
+  let result = [];
+  for (let i = arr.length-1; i >= 0; i--) {
+    result[i] = right;
+    right *= arr[i];
+  }
+  for (let j = 0; j < arr.length-1; j++) {
+    result[j] *= left;
+    left *= arr[j];
+  }
+  return result;
+}
+// console.log(productExceptSelf([1,2,3,4]));
+
+function maxSubArray(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    max = Math.max(arr[i], arr[i] + arr[i-1]);
+    arr[i] = max;
+  }
+  return Math.max(...arr);
+}
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
+
+// Max Product in subarray
+// 3sum
