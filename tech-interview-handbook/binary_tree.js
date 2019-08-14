@@ -77,3 +77,23 @@ function postOrder(root) {
   }
   return result;
 }
+
+// Given a binary search tree, write a function to find the kth smallest element in it
+function kthSmallest(root, k) {
+  let stack = [];
+  let count = 0;  // To keep track of kth element 
+  let node = root;
+
+  while (true) {
+    if (node) {
+      stack.push(node);
+      node = node.left;
+    } else {
+      if (stack.length === 0) break;
+      node = stack.pop();
+      count += 1;
+      if (count === k) return node.val;
+      node = node.right;
+    }
+  }
+}

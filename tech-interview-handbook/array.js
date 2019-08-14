@@ -177,9 +177,32 @@ const arrayToObject = (array) =>
      return obj
    }, {});
 
-// Abstract reusable code with chosen key instead of ID 
-const arrayToObject = (array, keyField) =>
-   array.reduce((obj, item) => {
-     obj[item[keyField]] = item
-     return obj
-   }, {})
+
+// Two Sum
+function twoSum(arr, target) {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    let diff = target - arr[i];
+    if (obj[diff] !== undefined) return [obj[diff], i];
+    obj[arr[i]] = i;
+  }
+}
+// console.log(twoSum([2,7,11,15], 9))
+
+// Contains duplicate 
+function containsDuplicate(arr) {
+  let set = new Set(arr);
+  return set.size !== arr.length;
+}
+// console.log(containsDuplicate([1,2,3,1]));
+
+// Buy/sell stock
+function maxProfit(prices) {
+  let max = 0; min = prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    min = Math.min(min, prices[i]);
+    max = Math.max(max, prices[i] - min);
+  }
+  return max;
+}
+// console.log(maxProfit([7,1,5,3,6,4]));
