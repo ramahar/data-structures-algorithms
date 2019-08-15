@@ -86,3 +86,33 @@ function intersectionNode(headA, headB) {
   }
   return p1;  // This returns null if there is no intersection 
 }
+
+// Check if linked list is palindrome
+function isPalindrome(head) {
+  let fast = head;
+  let slow = head;
+
+  while (fast) {
+    fast = fast.next ? fast.next.next : fast.next;
+    slow = slow.next;
+  }
+
+  // Reverse the second half
+  let prev = null;
+  while (slow) {
+    const next = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = next;
+  }
+
+  // Compare the two halves in sequence
+  while (prev) {
+    if (prev.val !== head.val) {
+      return false;
+    }
+    prev = prev.next;
+    head = head.next;
+  }
+  return true;
+}
