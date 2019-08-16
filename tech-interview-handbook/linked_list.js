@@ -93,6 +93,7 @@ function isPalindrome(head) {
   let slow = head;
 
   while (fast) {
+    // result = (condition) ? 'something' : 'somethingelse'; 
     fast = fast.next ? fast.next.next : fast.next;
     slow = slow.next;
   }

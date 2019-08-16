@@ -83,21 +83,39 @@ var groupAnagrams = function(strs) {
 
 // Given a string, count how many palindromic substrings in this string.
 var countSubstrings = function(s) {
-  let c=0;
-  for(let i=0;i<s.length;i++){
-      for(let j=i;j<s.length;j++){
-          if(isPalindrome(s.substring(i,j+1)))
-           c++;   
-      }
+  let count = 0;
+  let substring;
+  for(let i = 0; i < s.length; i++) {
+    for(let j = i; j < s.length; j++) {
+      substring = s.substring(i,j+1);
+      if(isPalindrome(substring)) count++;   
+    }
   }
-  return c;
+  return count;
 };
+function isPalindrome(s){
+  return s === s.split('').reverse().join('');
+}
 
 // Given a string s, find the longest palindromic substring in s
-function longestPalindrome(s) {
-
-}
-// https://leetcode.com/problems/longest-palindromic-substring/discuss/2926/Share-my-concise-JavaScript-solution
+var longestPalindrome = function(s) {
+  var max = '';
+  for (var i = 0; i < s.length; i++) {
+    for (var j = 0; j < 2; j++) {
+      var left = i;
+      var right = i + j;
+      while (s[left] && s[left] === s[right]) {
+        left--;
+        right++;
+      }
+      if ((right - left - 1) > max.length) {
+        max = s.substring(left + 1, right);
+      }
+    }
+  }
+  return max;
+};
+// console.log(longestPalindrome("babad"));
 
 // Find all permutations of a string
 function permutations(s) {
