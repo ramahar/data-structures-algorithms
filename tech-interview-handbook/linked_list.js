@@ -92,9 +92,11 @@ function isPalindrome(head) {
   let fast = head;
   let slow = head;
 
+  // Iterate slow and fast pointers 
   while (fast) {
-    // result = (condition) ? 'something' : 'somethingelse'; 
-    fast = fast.next ? fast.next.next : fast.next;
+    if (fast.next) fast = fast.next.next;
+    else fast = fast.next;
+    
     slow = slow.next;
   }
 
