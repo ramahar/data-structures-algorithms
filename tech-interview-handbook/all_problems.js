@@ -121,6 +121,30 @@ function merge(l1, l2) {
   return l1;
 }
 
+function removeNth(head, n) {
+  let curr = head;
+  let slow = head; fast = head;
+  for (let i = 0; i < n; i++) {
+    fast = fast.next;
+  }
+  if (!fast) return curr.next;
+  
+  while (fast.next) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+  slow.next = slow.next.next;
+  return curr;
+}
+
+// DYNAMIC PROGRAMMING
+function climbingStairs(n) {
+
+}
+
+function jumpGame(arr) {
+  
+}
 
 // SORTS
 function mergeSort(arr) {
