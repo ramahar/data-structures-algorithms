@@ -50,6 +50,18 @@ function maxSubArray(arr) {
 }
 // console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
 
+// STRING
+function validAnagram(s, t) {
+  return s.split('').sort().join('') === t.split('').sort().join('');
+}
+
+function validPalindrome(str) {
+  let stripped = str.replace(/\W/g, '');
+  let reversed = stripped.split('').reverse().join('');
+  return reversed.toLowerCase() === str.toLowerCase();
+}
+console.log(validPalindrome('bab'));
+
 // SORTS
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
