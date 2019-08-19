@@ -40,6 +40,16 @@ function productExceptSelf(arr) {
 }
 // console.log(productExceptSelf([1,2,3,4]));
 
+function maxSubArray(arr) {
+  let max = 0;
+  for (let i = 1; i < arr.length; i++) {
+    max = Math.max(arr[i], arr[i] + arr[i-1]);
+    arr[i] = max;
+  }
+  return Math.max(...arr);
+}
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
+
 // SORTS
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
