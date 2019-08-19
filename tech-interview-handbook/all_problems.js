@@ -60,7 +60,67 @@ function validPalindrome(str) {
   let reversed = stripped.split('').reverse().join('');
   return reversed.toLowerCase() === str.toLowerCase();
 }
-console.log(validPalindrome('bab'));
+// console.log(validPalindrome('bab'));
+
+function validParentheses(str) {
+  let pairs = {
+    '(': ')',
+    '[': ']',
+    '{': '}'
+  };
+  let stack = [];
+  for (let i = 0; i < str.length; i++) {
+    let el = str[i];
+    if (pairs[el]) stack.push(pairs[el]);
+    else {
+      if (stack.pop() !== el) return false;
+    }
+  }
+  return stack.length === 0;
+}
+// console.log(validParentheses('()[]'));
+
+function lengthOfLongestSubstring(str) {
+  let result = []; max = 0;
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    result = result.slice(result.indexOf(char) + 1);
+    max = Math.max(max, result.push(char));
+  }
+  return max;
+}
+// console.log(lengthOfLongestSubstring("abcabcbb"));
+
+// LINKED LIST
+function reverse(head) {
+  let prev = null;
+  while (head) {
+    let next = head.next;
+    head.next = prev;
+    prev = head;
+    head = next;
+  }
+  return prev;
+}
+
+function hasCycle(head) {
+  let set = new Set();
+  while (head) {
+    if (set.has(head)) return true;
+    set.add(head);
+    head = head.next;
+  }
+  return false; 
+}
+
+function merge(l1, l2) {
+  if (!l1 || !l2) return l1 || l2;
+
+  if (l1.val > l2.val) [l1, l2] = [l2, l1];
+  l1.next = merge(l1.next, l2);
+  return l1;
+}
+
 
 // SORTS
 function mergeSort(arr) {
