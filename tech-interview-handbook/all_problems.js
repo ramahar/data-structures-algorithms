@@ -26,6 +26,20 @@ function containsDuplicate(arr) {
 }
 // console.log(containsDuplicate([1,1,4,6]));
 
+function productExceptSelf(arr) {
+  let result = []; left = 1; right = 1;
+  for (let i = arr.length-1; i >= 0; i--) {
+    result[i] = right;
+    right *= arr[i];
+  }
+  for (let j = 0; j < arr.length; j++) {
+    result[j] *= left;
+    left *= arr[j];
+  }
+  return result;
+}
+// console.log(productExceptSelf([1,2,3,4]));
+
 // SORTS
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
