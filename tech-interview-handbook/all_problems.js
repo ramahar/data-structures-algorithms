@@ -137,13 +137,52 @@ function removeNth(head, n) {
   return curr;
 }
 
+// TREE
+function maxDepth(root) {
+  if (!root) return 0;
+  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+}
+
+function isSameTree(p, q) {
+  if (!p || !q) return p === q;
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right) && (p.val === q.val);
+}
+
+function invertTree(root) {
+  if (!root) return null;
+  let left = invertTree(root.left);
+  let right = invertTree(root.right);
+  [root.left, root.right] = [right, left];
+  return root;
+}
+
 // DYNAMIC PROGRAMMING
 function climbingStairs(n) {
-
+  if (n < 3 && n > 0) return n;
+  
+  let arr = [1, 2];
+  for (let i = 2; i < n; i++) {
+    arr[i] = arr[i-1] + arr[i-2];
+  }
+  return arr[n-1];
 }
 
 function jumpGame(arr) {
-  
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (max < i) return false;
+    max = Math.max(max, arr[i] + i);
+  }
+  return true; 
+}
+
+function houseRobber(nums) {
+  if (nums.length === 0) return 0;
+  let memo = [nums[0], Math.max(nums[0], nums[1])];
+  for (let i = 2; i < nums.length; i++) {
+    memo[i] = Math.max(memo[i-1], nums[i] + memo[i-2]);
+  }
+  return memo[memo.length-1];
 }
 
 // SORTS
