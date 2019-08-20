@@ -47,9 +47,7 @@ function mergeTwoLists(l1, l2) {
 // Remove nth node from the end of a linked list 
 function removeNth(head, n) {
   let curr = head;
-  // Two pointers, 2nd pointer is n ahead of the 1st 
-  let slow = head;
-  let fast = head;
+  let slow = head; fast = head;
 
   // Set 2nd pointer to be n ahead
   for (let i = 0; i < n; i++) {
