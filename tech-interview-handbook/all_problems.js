@@ -156,6 +156,15 @@ function invertTree(root) {
   return root;
 }
 
+function isSubtree(s, t) {
+  if (!s) return !t;
+  return isSubtree(s.left, t) || isSubtree(s.right, t) || isEqual(s, t);
+}
+function isEqual(root1, root2) {
+  if (!root1 || !root2) return !root1 && !root2;
+  if (root1.val !== root2.val) return false;
+}
+
 // DYNAMIC PROGRAMMING
 function climbingStairs(n) {
   if (n < 3 && n > 0) return n;
