@@ -200,3 +200,29 @@ function productExceptSelf(arr) {
   return result;
 }
 // console.log(productExceptSelf([1,4,6]));
+
+function maxSubArray(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let max = Math.max(max, arr[i] + arr[i-1]);
+    arr[i] = max;
+  }
+  return Math.max(...arr);
+}
+
+var findDuplicate = function(nums) {
+    let slow = nums[0];
+    let fast = nums[slow];
+    
+    while (slow !== fast) {
+      slow = nums[slow];
+      fast = nums[nums[fast]];
+    }
+    fast = 0;
+    
+    while (slow !== fast) {
+      slow = nums[slow];
+      fast = nums[fast];
+    }
+    return slow;
+  };
+// console.log(findDuplicate([1,3,4,2,2]));
