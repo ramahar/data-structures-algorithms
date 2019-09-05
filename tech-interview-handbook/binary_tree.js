@@ -97,3 +97,18 @@ function kthSmallest(root, k) {
     }
   }
 }
+
+// Verify preorder serialization
+// Each number must have 2 #'s before. Iterate backwards 
+var isValidSerialization = function(preorder) {
+  preorder = preorder.split(",");
+  var stack = [];
+  for(let i = preorder.length-1 ; i >= 0 ; i--){
+      if(preorder[i] !== "#"){
+          if(!stack.pop() || !stack.pop()) return false;
+      }
+      stack.push("#");
+  }
+  return stack.length === 1;
+};
+// console.log(isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));

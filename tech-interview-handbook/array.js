@@ -154,25 +154,15 @@ function maxProduct(nums) {
 }
 // console.log(maxProduct([-2,3,-4]));
 
-// Given an integer array nums, find the sum of the elements between indices 
-// i and j (i ≤ j), inclusive.
-//  Your NumArray object will be instantiated and called as such:
-//  var numArray = new NumArray(nums);
-//  numArray.sumRange(0, 1);
-function NumArray(nums) {
-  this.sum = nums;
-}
-NumArray.prototype.sumRange = function(i, j) {
-  let sum = 0; 
-  for (let idx = i; idx <= j; idx++) {
-    sum += this.sum[idx];
-  }
-  return sum;
-}
 
-// Convert array to object
-const arrayToObject = (array) =>
-   array.reduce((obj, item) => {
-     obj[item.id] = item
-     return obj
-   }, {});
+
+
+// ---------------- PRACTICE -------------------
+function twoSum(arr, target) {
+  let map = {};
+  for (let i = 0; i < arr.length; i++) {
+    let diff = target - arr[i];
+    if (map[diff] !== undefined) return [map[diff], i];
+    map[arr[i]] = i;
+  }
+}

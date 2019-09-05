@@ -17,3 +17,21 @@ var merge = function(intervals) {
   }
   return result;
 };
+
+var eraseOverlapIntervals = function(intervals) {
+  if (intervals.length === 0) return 0;
+  
+  intervals.sort((a, b) => a.start - b.start);
+  let count = 0;
+  let prevEnd = intervals[0].end;
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i].start < prevEnd) {
+      count++;
+      prevEnd = Math.min(prevEnd, intervals[i].end);
+    } else {
+      prevEnd = intervals[i].end;
+    }
+  }
+  return count; 
+};
+// console.log(eraseOverlapIntervals([[1,2],[2,3],[3,4],[1,3]]));
