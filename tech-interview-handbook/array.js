@@ -166,3 +166,21 @@ function twoSum(arr, target) {
     map[arr[i]] = i;
   }
 }
+// console.log(twoSum([1,4,6], 10));
+
+function maxProfit(prices) {
+  let min = prices[0]; max = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    min = Math.min(min, prices[i]);
+    max = Math.max(max, prices[i] - min);
+  }
+  return max;
+}
+// console.log(maxProfit([1, 4, 2, 7]));
+
+function containsDuplicate(arr) {
+  let set = new Set(arr);
+  return set.size !== arr.length;
+}
+// console.log(containsDuplicate([1,4]));
