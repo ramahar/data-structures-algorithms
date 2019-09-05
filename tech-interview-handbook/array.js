@@ -184,3 +184,19 @@ function containsDuplicate(arr) {
   return set.size !== arr.length;
 }
 // console.log(containsDuplicate([1,4]));
+
+function productExceptSelf(arr) {
+  let left = 1; right = 1;
+  let result = [];
+  
+  for (let i = arr.length-1; i >= 0; i--) {
+    result[i] = right;
+    right *= arr[i];
+  }
+  for (let j = 0; j < arr.length; j++) {
+    result[j] *= left;
+    left *= arr[j];
+  }
+  return result;
+}
+// console.log(productExceptSelf([1,4,6]));
