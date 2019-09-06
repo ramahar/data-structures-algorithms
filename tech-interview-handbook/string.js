@@ -121,3 +121,20 @@ var longestPalindrome = function(s) {
 function permutations(s) {
   
 }
+
+
+
+
+
+
+// ---------------- PRACTICE -------------------
+function validAnagram(s, t) {
+  return s.split('').sort().join('') === t.split('').sort().join('');
+}
+
+function validPalindrome(s) {
+  let formatted = s.replace(/\W/g, '');
+  let reversed = formatted.split('').reverse().join('');
+
+  return formatted.toLowerCase() === reversed.toLowerCase();
+}

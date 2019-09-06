@@ -226,3 +226,18 @@ var findDuplicate = function(nums) {
     return slow;
   };
 // console.log(findDuplicate([1,3,4,2,2]));
+
+function maxProduct(nums) {
+  let min = 1; max = 1;
+  let result = -Number.MAX_VALUE;
+
+  for (let num of nums) {
+    let currMin = Math.min(num, num * min, num * max);
+    let currMax = Math.max(num, num * min, num * max);
+
+    [min, max] = [currMin, currMax];
+    result = Math.max(result, max);
+  }
+  return result;
+}
+// console.log(maxProduct([-2,3,-4]));
