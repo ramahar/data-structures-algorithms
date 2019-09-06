@@ -138,3 +138,35 @@ function validPalindrome(s) {
 
   return formatted.toLowerCase() === reversed.toLowerCase();
 }
+
+function validParentheses(s) {
+  let pairs = {
+    "(": ")",
+    "[": "]",
+    "{": "}"
+  }
+
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let el = s[i];
+    if (pairs[el]) stack.push(pairs[el]);
+    else {
+      if (stack.pop() !== el) return false;
+    }
+  }
+  return stack.length === 0;
+}
+
+function lengthOfLongestSubstring(s) {
+  let result = [];
+  let max = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    let index = result.indexOf(char);
+    result = result.slice(index+1);
+    max = Math.max(max, result.push(char));
+  }
+  return max;
+}
+// console.log(lengthOfLongestSubstring("bbbbb"));
