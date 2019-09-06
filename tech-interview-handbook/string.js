@@ -170,3 +170,19 @@ function lengthOfLongestSubstring(s) {
   return max;
 }
 // console.log(lengthOfLongestSubstring("bbbbb"));
+
+// Find how many palindromic substrings
+var countSubstrings = function(s) {
+  let count = 0;
+  let sub = '';
+  for (let i = 0; i < s.length; i++) {
+    for (j = i; i < s.length; j++) {
+      sub = s.slice(i, j+1);
+      if (isPalindrome(sub)) count++;
+    }
+  }
+  return count;
+}
+function isPalindrome(s) {
+  return s.split('').reverse().join('') === s;
+}
