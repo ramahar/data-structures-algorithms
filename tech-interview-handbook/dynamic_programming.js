@@ -81,3 +81,41 @@ function coinChange(coins, amount) {
   return dp[amount] === Number.MAX_VALUE ? -1 : dp[amount];
 }
 // console.log(coinChange([1,2,5], 11));
+
+
+
+
+
+
+// ---------------- PRACTICE -------------------
+var climbStairs = function(n) {
+  if (n < 3 && n >= 0) return n;
+  
+  let memo = [1, 2];
+  for (let i = 2; i < n; i++) {
+    memo[i] = memo[i-1] + memo[i-2];
+  }
+  return memo[n-1];
+};
+
+function canJump(nums) {
+  let max = nums[0];
+
+  for (let i = 1; i < nums.length; i++) {
+    if (max < i) return false;
+    max = Math.max(max, nums[i] + i);
+  }
+  return true;
+}
+
+function rob(nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return nums[0];
+
+  let memo = [nums[0], Math.max(nums[0], nums[1])];
+
+  for (let i = 2; i < nums.length; i++) {
+    memo[i] = Math.max(memo[i-1], nums[i] + memo[i -2]);
+  }
+  return memo[memo.length-1];
+}
