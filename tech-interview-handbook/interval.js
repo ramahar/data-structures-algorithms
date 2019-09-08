@@ -57,12 +57,13 @@ function merge(intervals) {
 
 // Given an array of meeting time intervals consisting of start and end times, determine if a person could attend all meetings
 function canAttend(intervals) {
-  intervals.sort((a, b) => a[0] - b[0]);
+  intervals.sort((a, b) => a[0] - b[0]);  // Sort by start times 
 
   for (let i = 1; i < intervals.length; i++) {
     let currStart = intervals[i][0];
     let prevEnd = intervals[i-1][1];
-    if (currStart < prevEnd) return false;
+
+    if (currStart < prevEnd) return false;  // Current start time cannot be earlier than previous end time
   }
   return true; 
 }
