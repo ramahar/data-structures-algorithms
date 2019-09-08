@@ -112,3 +112,41 @@ var isValidSerialization = function(preorder) {
   return stack.length === 1;
 };
 // console.log(isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+
+
+
+
+
+// ---------------- PRACTICE -------------------
+function maxDepth(root) {
+  if (!root) return 0;
+
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+}
+
+function sameTree(s, t) {
+  if (!s || !t) return s === t;
+  
+  return sameTree(s.left, t.left) && sameTree(s.right, t.right) && (s.val === t.val);
+}
+
+function invert(root) {
+  if (!root) return null;
+
+  let left = invertTree(root.left);
+  let right = invertTree(root.right);
+
+  [root.right, root.left] = [left, right];
+  return root;
+}
+
+function isSubtree(s, t) {
+  if (!s) return !t;
+  return isSubtree(s.left, t) || isSubtree(s.right, t) || isEqual(s, t);
+}
+function isEqual(root1, root2) {
+  if (!root1 || !root2) return !root1 && !root2;
+  if (root1.val !== root2.val) return false;
+
+  return isEqual(root1.left, root2.left) && isEqual(root1.right, root2.right);
+}
