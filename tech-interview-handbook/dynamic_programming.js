@@ -113,9 +113,22 @@ function rob(nums) {
   if (nums.length === 1) return nums[0];
 
   let memo = [nums[0], Math.max(nums[0], nums[1])];
-
   for (let i = 2; i < nums.length; i++) {
-    memo[i] = Math.max(memo[i-1], nums[i] + memo[i -2]);
+    memo[i] = Math.max(memo[i-1], nums[i] + memo[i-2]);
   }
   return memo[memo.length-1];
+}
+
+function coinChange(coins, amount) {
+  let dp = new Array(amount+1);
+  dp.fill(Number.MAX_VALUE);
+  dp[0] = 0;
+
+  for (let i = 1; i <= amount; i++) {
+    for (let coin of coins) {
+      let diff = i - coin;
+      if (diff >= 0) dp[i] = Math.min(dp[i], dp[diff] + 1);
+    }
+  }
+  return dp[amount] === Number.MAX_VALUE ? -1 : dp[amount];
 }
