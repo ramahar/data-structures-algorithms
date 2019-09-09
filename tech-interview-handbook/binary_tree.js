@@ -150,3 +150,50 @@ function isEqual(root1, root2) {
 
   return isEqual(root1.left, root2.left) && isEqual(root1.right, root2.right);
 }
+
+function kthSmallest(root, k) {
+  function inOrder(root) {
+    
+    let stack = [];
+    
+    while (root !== null || stack.length !== 0) {
+      while (root) {
+        stack.push(root);
+        root = root.left;
+      }
+      root = stack.pop();
+      k -= 1;
+      if (k === 0) return root.val;
+      root = root.right;
+    }
+  }
+  return inOrder(root);
+}
+
+function levelOrder(root) {
+  let result = [];
+  levelRecursion(root, result, 0);
+  return result;
+}
+function levelRecursion(node, result, level) {
+  if (!node) return null;
+  if (result.length < level + 1) result.push([]);
+
+  levelRecursion(node.left, result, level + 1);
+  levelRecursion(node.right, result, level + 1);
+
+  result[level].push(node.val);
+}
+
+var isValidBST = function(root) {
+  if (!root) return true;
+  return dfs(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+  
+  function dfs(root, min, max) {
+    if (!root) return true;
+    if (root.val <= min || root.val >= max) return false;
+    
+    // Make sure left node is betwen min and val, and right node is between val and max
+    return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
+  }
+};
