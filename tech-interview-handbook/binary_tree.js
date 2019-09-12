@@ -197,3 +197,37 @@ var isValidBST = function(root) {
     return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
   }
 };
+
+function isValidSerialization(preorder) {
+  preorder = preorder.split(",");
+  let stack = [];
+
+  for (let i = preorder.length-1; i >= 0; i--) {
+    if (preorder[i] !== "#") {
+      if (!stack.pop() || !stack.pop()) return false;
+    }
+    stack.push("#");
+  }
+  return stack.length === 1;
+}
+
+function buildSubsequences(s) {
+  // Write your code here
+  let result = {};
+
+  function sub(s) {
+      result[s] = 1;
+      for (let i = 0; i < s.length; i++) {
+          let str = s.substr(0, i) + s.substr(i+1);
+
+          if (!result[str] && sub.length) sub(str);
+      }
+  }
+
+  sub(s);
+  for (var key in result) { 
+    if (result[key] === null || result[key] === undefined || key.length === 0 || key === null)  delete result[key];
+  }
+  return Object.keys(result).sort();
+}
+console.log(buildSubsequences("ba"));
