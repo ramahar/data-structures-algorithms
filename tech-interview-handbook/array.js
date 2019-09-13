@@ -162,6 +162,16 @@ var trap = function(height) {
   let leftHeight = 0, rightHeight = 0;
 
   while (left <= right) {
-    
+    if (leftHeight <= rightHeight) {
+      leftHeight = Math.max(leftHeight, height[left]);
+      trapped += leftHeight - height[left];
+      left++;
+    } else {
+      rightHeight = Math.max(rightHeight, height[right]);
+      trapped += rightHeight - height[right];
+      right--;
+    }
   }
+  return trapped; 
 }
+// console.log(trap([0,1,0,2,1,0,1,3,2,1,2,1]));
