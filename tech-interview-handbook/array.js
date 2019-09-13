@@ -153,3 +153,15 @@ function maxProduct(nums) {
   return result; 
 }
 // console.log(maxProduct([-2,3,-4]));
+
+// Given n non-negative integers representing an elevation map where the width of 
+// each bar is 1, compute how much water it is able to trap after raining.
+var trap = function(height) {
+  let trapped = 0;
+  let left = 0, right = height.length-1;
+  let leftHeight = 0, rightHeight = 0;
+
+  while (left <= right) {
+    
+  }
+}
