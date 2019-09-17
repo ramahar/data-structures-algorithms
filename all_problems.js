@@ -1,5 +1,4 @@
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
-
+// ARRAY
 function twoSum(arr, target) {
 	let map = {};
 	for (let i = 0; i < arr.length; i++) {
