@@ -24,7 +24,7 @@ function containsDuplicate(arr) {
   let set = new Set(arr);
   return set.size !== arr.length;
 }
-console.log(containsDuplicate([1,2,2]));
+// console.log(containsDuplicate([1,2,2]));
 
 function productExceptSelf(arr) {
 	let result = [];
@@ -39,6 +39,7 @@ function productExceptSelf(arr) {
 	}
 	return result;
 }
+// console.log(productExceptSelf([1,2,4]));
 
 function maxSubArray(arr) {
 	for (let i = 1; i < arr.length; i++) {
@@ -47,6 +48,7 @@ function maxSubArray(arr) {
 	}
 	return Math.max(...arr);
 }
+// console.log(maxSubArray([2,1,4,3]));
 
 function findDuplicate(arr) {
 	let slow = arr[0];
@@ -62,3 +64,4 @@ function findDuplicate(arr) {
 	}
 	return slow;
 }
+console.log(findDuplicate([1,2,2]));
