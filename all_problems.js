@@ -15,7 +15,7 @@ function maxProfit(prices) {
 	
 	for (let i = 1; i < prices.length; i++) {
 		min = Math.min(min, prices[i]);
-		
+		max = Math.max(max, prices[i] - min);
 	}
 	return max;
 }
@@ -89,7 +89,7 @@ function findMin(nums) {
 }
 
 function removeDuplicates(nums) {
-  let count = 0;
+  let count = 0;  // Tracks how many duplicates. Substract from total length at end 
   for (let i = 1; i < nums.length; i++) {
     let diff = i - count;
     
