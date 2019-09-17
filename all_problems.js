@@ -64,4 +64,25 @@ function findDuplicate(arr) {
 	}
 	return slow;
 }
-console.log(findDuplicate([1,2,2]));
+// console.log(findDuplicate([1,2,2]));
+
+function maxProduct(arr) {
+  let result = -Number.MAX_VALUE;   // Handles negative * negative 
+  let min = 1, max = 1;
+  for (let el of arr) {
+    currMin = Math.min(el, el * min, el * max);
+    currMax = Math.max(el, el * min, el * max);
+
+    [min, max] = [currMin, currMax];
+    result = Math.max(result, max);
+  }
+  return result;
+}
+// console.log(maxProduct([-2,3,-4]))
+
+function findMin(nums) {
+  let min = nums[nums.length-1];  // Compare all elements with last element 
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] <= min) return nums[i];
+  }
+}
