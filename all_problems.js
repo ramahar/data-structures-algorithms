@@ -266,3 +266,78 @@ function robber(nums) {
   }
   return memo[memo.length-1];
 }
+
+function coinChange(coins, amount) {
+  let dp = new Array(amount + 1);
+  dp.fill(Number.MAX_VALUE);
+  dp[0] = 0;
+
+  for (let i = 1; i <= amount; i++) {
+    for (let coin of coins) {
+      let diff = i - coin;
+      if (diff >= 0) dp[i] = Math.min(dp[i], dp[diff] + 1);
+    }
+  }
+  return dp[amount] === Number.MAX_VALUE ? -1 : dp[amount];
+}
+
+// Given an array, return all possible subsets (power set)
+function subsets(nums) {
+  let result = [];
+  dfs([], 0);
+  return result;
+
+  function dfs(current, index) {
+    result.push(current);
+    for (let i = index; i < nums.length; i++) {
+      let subset = current.concat(nums[i]);
+      dfs(subset, i + 1);
+    }
+  }
+}
+
+// INTERVALS
+function merge(intervals) {
+  if (intervals.length === 0) return intervals;
+
+  intervals.sort((a,b) => a[0] - b[0]);
+  let prev = intervals[0];
+  let result = [prev];
+
+  for (let interval of intervals) {
+    if (interval[0] < prev[1]) prev[1] = Math.max(prev[1], interval[1]);
+    else {
+      result.push(interval);
+      prev = interval;
+    }
+  }
+  return result;
+}
+
+function canAttend(intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+
+  for (let i = 1; i < intervals.length; i++) {
+    let currStart = intervals[i][0];
+    let prevEnd = intervals[i-1][1];
+    if (currStart < prevEnd) return false;
+  }
+  return true; 
+}
+
+// BINARY TREE
+function maxDepth(root) {}
+
+function sameTree(p, q) {}
+
+function invert(root) {}
+
+function isSubtree(s, t) {}
+
+
+// SORT 
+function mergeSort(arr) {}
+
+function quickSort(arr) {}
+
+function bSearch(arr) {}
