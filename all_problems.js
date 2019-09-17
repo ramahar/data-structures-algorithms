@@ -237,3 +237,32 @@ function merge(l1, l2) {
 }
 
 // DYNAMIC PROGRAMMING 
+function climbStairs(n) {
+  if (n < 3 && n >= 0) return n;
+
+  let memo = [1, 2];
+  for (let i = 2; i < n; i++) {
+    memo[i] = memo[i-1] + memo[i-2];
+  }
+  return memo[n-1];
+}
+
+function canJump(arr) {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (max < i) return false; 
+    max = Math.max(max, arr[i] + i);
+  }
+  return true;
+}
+
+function robber(nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return nums[0];
+
+  let memo = [nums[0], Math.max(nums[0], nums[1])];
+  for (let i = 2; i < nums.length; i++) {
+    memo[i] = Math.max(memo[i-1], nums[i] + memo[i-2]);
+  }
+  return memo[memo.length-1];
+}
