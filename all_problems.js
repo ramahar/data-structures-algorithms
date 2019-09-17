@@ -1,3 +1,5 @@
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
+
 function twoSum(arr, target) {
 	let map = {};
 	for (let i = 0; i < arr.length; i++) {
@@ -326,18 +328,99 @@ function canAttend(intervals) {
 }
 
 // BINARY TREE
-function maxDepth(root) {}
+function maxDepth(root) {
+  if (root === null) return 0;
+  return 1 + Math.max(maxDepth(root.left) , maxDepth(root.right));
+}
 
-function sameTree(p, q) {}
+function sameTree(p, q) {
+  if (!p || !q) return p === q;
 
-function invert(root) {}
+  return sameTree(p.left, q.left) && sameTree(p.right, q.right) && (p.val === q.val);
+}
 
-function isSubtree(s, t) {}
+function invert(root) {
+  if (!root) return null;
+  let left = invert(root.left);
+  let right = invert(root.right);
+  [root.left, root.right] = [right, left];
+  return root;
+}
 
+function isSubtree(s, t) {
+  if (!s) return !t;
+  return isSubtree(s.left, t) || isSubtree(s.right, t) || sameTree(s, t);
+}
+
+function isValidBST(root) {
+  return helper(root, null, null);
+
+  function helper(root, min, max) {
+    if (!root) return true;
+    if (min !== null && root.val <= min) return false;
+    if (max !== null && root.val >= max) return false;
+
+    return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+  }
+}
+
+function levelOrder(root) {
+  if (!root) return [];
+  let result = [];
+  let stack = [];
+  stack.push(root);
+
+  while (stack.length > 0) {
+    let size = stack.length;
+    let inner = [];
+    for (let i = 0; i < size; i++) {
+      let node = stack.pop();
+      inner.push(node.val);
+
+      if (node.left) stack.push(node.left);
+      if (node.right) stack.push(node.right);
+    }
+    result.push(inner);
+  }
+  return result; 
+}
 
 // SORT 
-function mergeSort(arr) {}
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor((arr.length)/2);
+  let left = arr.slice(0, mid);
+  let right = arr.slice(mid);
+  return merge(mergeSort(left), mergeSort(right));
 
-function quickSort(arr) {}
+  function merge(left, right) {
+    let result = [];
+    while (left.length && right.length) {
+      if (left[0] < right[0]) result.push(left.shift());
+      else result.push(right.shift());
+    }
+    return result.concat(left, right);
+  }
+}
 
-function bSearch(arr) {}
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+  
+  let pivot = arr[0];
+  let left = [], right = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < pivot) left.push(arr[i]);
+    else right.push(arr[i]);
+  }
+  return left.concat(pivot, right);
+}
+
+function bSearch(arr) {
+  let start = 0, end = arr.length-1;
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) start = mid + 1;
+    else end = mid - 1;
+  }
+}
