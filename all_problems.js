@@ -15,4 +15,17 @@ function merge(left, right) {
   }
   return result.concat(left, right);
 }
+// console.log(mergeSort([1,4,2,3,6]));
+
+function quickSort(arr) {
+  if (arr.length <= 1) return arr; 
+  let pivot = arr[0];
+  let left = [], right = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > pivot) right.push(arr[i]);
+    else left.push(arr[i]);
+  }
+  return quickSort(left).concat(pivot).concat(quickSort(right));
+}
 console.log(mergeSort([1,4,2,3,6]));
