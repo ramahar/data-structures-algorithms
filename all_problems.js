@@ -28,4 +28,15 @@ function quickSort(arr) {
   }
   return quickSort(left).concat(pivot).concat(quickSort(right));
 }
-console.log(mergeSort([1,4,2,3,6]));
+// console.log(quickSort([1,4,2,3,6]));
+
+function bSearch(arr, target) {
+  let start = 0, end = arr.length-1;
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    if (arr[mid] === target) return mid;
+    else if (target < arr[mid]) end = mid - 1;
+    else start = mid + 1;
+  }
+}
+// console.log(bSearch([1,2,4,5], 4))
