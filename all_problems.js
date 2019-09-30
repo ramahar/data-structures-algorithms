@@ -30,6 +30,21 @@ function containsDuplicate(arr) {
   return false;
 }
 
+function findDuplicate(arr) {
+  let slow = arr[0];
+  let fast = arr[fast];
+  while (slow !== fast) {
+    slow = arr[slow];
+    fast = arr[arr[fast]];
+  }
+  fast = 0;
+  while (slow !== fast) {
+    slow = arr[slow];
+    fast = arr[fast];
+  }
+  return slow; 
+}
+
 function productExceptSelf(arr) {
   let left = 1, right = 1, result = [];
   for (let i = arr.length-1; i >= 0; i--) {
@@ -38,9 +53,20 @@ function productExceptSelf(arr) {
   }
   for (let j = 0; j < arr.length; j++) {
     result[j] *= left;
-    left *= arr[i];
+    left *= arr[j];
   }
   return result;
+}
+
+function minimumRotatedArray(arr) {
+  let min = arr[arr.length-1];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] <= min) return arr[i];
+  }
+}
+
+function removeDuplicates(arr) {
+
 }
 
 // STRING
