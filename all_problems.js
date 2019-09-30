@@ -32,7 +32,7 @@ function containsDuplicate(arr) {
 
 function findDuplicate(arr) {
   let slow = arr[0];
-  let fast = arr[fast];
+  let fast = arr[slow];
   while (slow !== fast) {
     slow = arr[slow];
     fast = arr[arr[fast]];
@@ -65,8 +65,37 @@ function minimumRotatedArray(arr) {
   }
 }
 
-function removeDuplicates(arr) {
+// Remove duplicates from array in-place and return new length 
+function removeDuplicates(nums) {
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === nums[i-1]) count++; 
+    else nums[i - count] = nums[i];
+  }
+  return nums.length - count; 
+}
 
+function maxArea(height) {
+  let max = 0;
+  let start = 0, end = height.length-1;
+  while (start < end) {
+    let area = Math.min(height[start], height[end]) * (end - start);
+    max = Math.max(max, area);
+
+    if (height[start] > height[end]) end--;
+    else start++; 
+  }
+  return max;
+}
+
+function mergeSortedArrays(nums1, m, nums2, n) {
+  let length = m + n;
+  m--;
+  n--;
+  while (length--) {
+    if (n < 0 || nums1[m] > nums2[n]) nums1[length] = nums1[m--];
+    else nums1[length] = nums2[n--];
+  }
 }
 
 // STRING
