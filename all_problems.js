@@ -20,12 +20,27 @@ function maxProfit(prices) {
 }
 
 function containsDuplicate(arr) {
-  let set = new Set(arr);
-  return set.size !== arr.length;
+  let count = {};
+  for (let i = 0; i < arr.length; i++) {
+    let el = arr[i];
+    if (count[el]) count[el]++;
+    else count[el] = 1;
+    if (count[el] > 1) return true; 
+  }
+  return false;
 }
 
 function productExceptSelf(arr) {
-
+  let left = 1, right = 1, result = [];
+  for (let i = arr.length-1; i >= 0; i--) {
+    result[i] = right;
+    right *= arr[i];
+  }
+  for (let j = 0; j < arr.length; j++) {
+    result[j] *= left;
+    left *= arr[i];
+  }
+  return result;
 }
 
 // STRING
