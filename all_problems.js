@@ -1,3 +1,52 @@
+// ARRAY
+function twoSum(arr, target) {
+  let map = {};
+  for (let i = 0; i < arr.length; i++) {
+    let diff = target - arr[i];
+    if (map[diff] !== undefined) return [map[diff], i];
+    map[arr[i]] = i;
+  }
+}
+// console.log(twoSum([0,1,2,4], 4));
+
+// STRING
+
+// LINKED LIST
+function reverse(head) {
+  let prev = null;
+  while (head) {
+    let next = head.next;
+    head.next = prev;
+    prev = head;
+    head = next;
+  }
+  return prev; 
+}
+
+function hasCycle(head) {
+  let set = new Set();
+  while (head) {
+    if (set.has(head)) return true;
+    set.add(head);
+    head = head.next;
+  }
+  return false;
+}
+
+function removeNth(head, n) {
+  let slow = head, fast = head, curr = head;
+  for (let i = 0; i < n; i++) {
+    fast = fast.next;
+  }
+  if (!fast) return curr.next;
+  while (slow !== fast) {
+    slow = slow.next;
+    fast = fast.next;
+  }
+  slow.next = slow.next.next;
+  return curr; 
+}
+
 // BINARY SEARCH TREE
 function maxDepth(root) {
   if (!root) return 0;
@@ -12,6 +61,46 @@ function sameTree(p, q) {
 function invert(root) {
   if (!root) return null;
   [root.left, root.right] = [invert(root.right), invert(root.left)];
+  return root;
+}
+
+function isSubtree(s, t) {
+  if (!s) return !t;
+  return isSubtree(s.left, t) || isSubtree(s.right, t) || sameTree(s, t);
+}
+
+function validBST(root) {
+  return helper(root, null, null);
+
+  function helper(root, min, max) {
+    if (!root) return true;
+    if (min !== null && root.val <= min) return false;
+    if (max !== null && root.val >= max) return false;
+    return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+  }
+}
+
+function maxPathSum(root) {
+  let max = -Number.MAX_VALUE;
+  function dfs(node) {
+    if (!node) return 0;
+    let leftSum = dfs(node.left);
+    let rightSum = dfs(node.right);
+    max = Math.max(max, node.val + leftSum + rightSum);
+
+    return Math.max(0, node.val + leftSum, node.val + rightSum);
+  }
+  dfs(root);
+  return max;
+}
+
+function lowestCommonAncestor(root, p, q) {
+  if (!root || root === p || root === q) return root;
+
+  let left = lowestCommonAncestor(root.left, p, q);
+  let right = lowestCommonAncestor(root.right, p, q);
+  if (!left) return right;
+  if (!right) return left;
   return root;
 }
 
