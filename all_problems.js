@@ -9,6 +9,25 @@ function twoSum(arr, target) {
 }
 // console.log(twoSum([0,1,2,4], 4));
 
+function maxProfit(prices) {
+  let min = prices[0];
+  let max = 0;
+  for (let i = 0; i < prices.length; i++) {
+    min = Math.min(min, prices[i]);
+    max = Math.max(max, prices[i] - min);
+  }
+  return max;
+}
+
+function containsDuplicate(arr) {
+  let set = new Set(arr);
+  return set.size !== arr.length;
+}
+
+function productExceptSelf(arr) {
+
+}
+
 // STRING
 
 // LINKED LIST
