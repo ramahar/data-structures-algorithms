@@ -47,6 +47,22 @@ function removeNth(head, n) {
   return curr; 
 }
 
+function middle(head) {
+  let slow = head, fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
+}
+
+function merge(l1, l2) {
+  if (!l1 || !l2) return l1 || l2;
+  if (l1.val > l2.val) [l1, l2] = [l2, l1];
+  l1.next = merge(l1.next, l2);
+  return l1;
+}
+
 // BINARY SEARCH TREE
 function maxDepth(root) {
   if (!root) return 0;
