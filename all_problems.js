@@ -9,7 +9,11 @@ function sameTree(p, q) {
   return sameTree(p.left, q.left) && sameTree(p.right, q.right) && (p.val === q.val);
 }
 
-
+function invert(root) {
+  if (!root) return null;
+  [root.left, root.right] = [invert(root.right), invert(root.left)];
+  return root;
+}
 
 function levelOrder(root) {
   let result = [];
