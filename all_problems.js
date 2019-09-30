@@ -98,7 +98,50 @@ function mergeSortedArrays(nums1, m, nums2, n) {
   }
 }
 
+function searchRotatedArray(nums, target) {
+  let start = 0, end = nums.length-1;
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    if (nums[mid] === target) return mid;
+    // When dividing array into 2 halves, one half must be sorted. Check which one 
+    if (nums[start] <= nums[mid]) {
+      if (target >= nums[start] && target <= nums[mid]) end = mid - 1;
+      else start = mid + 1;
+    } else {
+      if (target >= nums[mid] && target <= nums[end]) start = mid + 1;
+      else end = mid - 1;
+    }
+  }
+  return -1;
+}
+
 // STRING
+function isPalindrome(s) {
+  let formatted = s.replace(/\W/g, '');
+  let reversed = s.split('').sort().join('');
+  return formatted.toLowerCase() === reversed.toLowerCase();
+}
+
+function isAnagram(s, t) {
+  return s.split('').sort().join('') === t.split('').sort().join('');
+}
+
+function validParentheses(s) {
+
+}
+
+function generateParentheses(n) {
+  let result = [];
+  generate(n, n, '');
+  return result;
+
+  function generate(left, right, str) {
+    if (str.length && !left && !right) return result.push(str); 
+    if (left) generate(left - 1, right, str + '(');
+    // Important conditional to check if right side is greater than left
+    if (right > left) generate (left, right - 1, str + ')'); 
+  }
+}
 
 // LINKED LIST
 function reverse(head) {
