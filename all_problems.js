@@ -272,6 +272,24 @@ function merge(l1, l2) {
   return l1;
 }
 
+function isPalindrome(head) {
+  if (head === null || head.next === null) return true;
+  let slow = head, fast = head;
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  // Reverse second half of array, then compare with first 
+  slow.next = reverse(slow.next);
+  slow = slow.next;
+  while (slow) {
+    if (slow.val !== head.val) return false;
+    head = head.next;
+    slow = slow.next;
+  }
+  return true; 
+}
+
 // BINARY SEARCH TREE
 function maxDepth(root) {
   if (!root) return 0;
