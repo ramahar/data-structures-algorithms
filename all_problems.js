@@ -431,12 +431,28 @@ function coinChange(coins, amount) {
     for (let coin of coins) {
       let diff = i - coin;
       if (diff >= 0) dp[i] = Math.min(dp[i], dp[diff] + 1);
-
     }
   }
   return dp[amount] === Number.MAX_VALUE ? -1 : dp[amount];
 }
-console.log(coinChange([1,2,5], 11));
+// console.log(coinChange([1,2,5], 11));
+
+// Return all possible subsets (power set)
+function subsets(nums) {
+  let result = [];
+  function dfs(current, index) {
+    result.push(current);
+    for (let i = index; i < nums.length; i++) {
+      let subset = current.concat(nums[i]);
+      dfs(subset, i + 1);
+    }
+  }
+
+  dfs([], 0);
+  return result;
+}
+
+// Find the length of the longest increasing subsequence
 
 //! IMPORTANT ALGORITHMS
 function bfs(root, value) {
