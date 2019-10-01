@@ -123,11 +123,34 @@ function isPalindrome(s) {
 }
 
 function isAnagram(s, t) {
-  return s.split('').sort().join('') === t.split('').sort().join('');
+  if (s.length !== t.length) return false;
+  let count = {};
+  for (let char of s) {
+    if (count[char]) count[char]++;
+    else count[char] = 1;
+  }
+  for (let char of t) {
+    if (!map[char]) return false;
+    map[char]--;  // Compare t and s characters, then decrement char count after checking
+  }
+  return true;
 }
 
 function validParentheses(s) {
-
+  let pairs = {
+    "(":")",
+    "{":"}",
+    "[":"]"
+  };
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let el = s[i];
+    if (pairs[el]) stack.push(pairs[el]);
+    else {
+      if (el !== stack.pop()) return false;
+    }
+  }
+  return stack.length === 0;
 }
 
 function generateParentheses(n) {
@@ -141,6 +164,60 @@ function generateParentheses(n) {
     // Important conditional to check if right side is greater than left
     if (right > left) generate (left, right - 1, str + ')'); 
   }
+}
+
+function longestSubstring(s) {
+  let max = 0; 
+  let result = [];
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    let index = result.indexOf(char);
+    result = result.slice(index + 1);
+    max = Math.max(max, result.push(char));
+  }
+  return max;
+}
+
+function palindromicSubstrings(s) {
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    helper(s, i, i);
+    helper(s, i, i+1);
+  }
+  return count;
+  function helper(s, low, high) {
+    while (low >= 0 && high <= s.length && s[low] === s[high]) {
+      count++;
+      low--;
+      high++;
+    }
+  }
+}
+
+function groupAnagrams(strs) {
+  let map = {};
+  for (let str of strs) {
+    let key = str.split('').sort().join('');
+    if (!map[key]) map[key] = [];
+    map[key].push(str);   // Store anagrams for every string
+  }
+  return Object.values(map);
+}
+
+function permutations(nums) {
+  let result = [];
+  function permute(current, remaining) {
+    if (remaining.length === 0) result.push(current.slice());
+    for (let i = 0; i < remaining.length; i++) {
+      // BACKTRACKING
+      current.push(remaining[i]);
+      let combo = remaining.slice(0, i).concat(remaining.slice(i + 1));
+      permute(current.slice(), combo);
+      current.pop();
+    }
+  }
+  permute([], nums);
+  return result;
 }
 
 // LINKED LIST
@@ -299,7 +376,7 @@ function preOrder(root) {
   return result;
 }
 
-// IMPORTANT ALGORITHMS
+//! IMPORTANT ALGORITHMS
 function bfs(root, value) {
   let queue = [root];
   while (queue.length > 0) {
