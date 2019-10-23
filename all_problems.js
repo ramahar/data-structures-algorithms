@@ -1,59 +1,72 @@
-// ARRAY
-function twoSum(arr, target) {
-  let map = {};
-  for (let i = 0; i < arr.length; i++) {
-    let diff = target - arr[i];
-    if (map[diff] !== undefined) return [map[diff], i];
-    map[arr[i]] = i;
-  }
-}
-// console.log(twoSum([0,1,2,4], 4));
-
 function maxProfit(prices) {
   let min = prices[0];
   let max = 0;
   for (let i = 0; i < prices.length; i++) {
-    min = Math.min(min, prices[i]);
-    max = Math.max(max, prices[i] - min);
+    min = Math.min(prices[i], min);
+    max = Math.max(prices[i], prices[i] - min);
   }
   return max;
 }
 
-function containsDuplicate(arr) {
+function containsDuplicate(nums) {
   let count = {};
-  for (let i = 0; i < arr.length; i++) {
-    let el = arr[i];
+  for (let i = 0; i < nums.length; i++) {
+    let el = nums[i];
     if (count[el]) count[el]++;
-    else count[el] = 1;
-    if (count[el] > 1) return true; 
+    else count[el] = 1
+
+    if (count[el] > 1) return true;
   }
   return false;
 }
 
-function findDuplicate(arr) {
-  let slow = arr[0];
-  let fast = arr[slow];
+function productExceptSelf(arr) {
+  let result = [];
+  let leftMult = 1, rightMult = 1;
+  for (let i = arr.length-1; i >= 0; i--) {
+    result[i] = rightMult;
+    rightMult *= arr[i];
+  }
+  for (let j = 0; j < arr.length; j++) {
+    result *= leftMult;
+    leftMult *= arr[j];
+  }
+  return result;
+}
+
+function maxSubArray(nums) {
+  let max = 0;
+  for (let i = 1; i < nums.length; i++) {
+    max = Math.max(nums[i], nums[i] + nums[i-1]);
+    nums[i] = max;
+  }
+  return Math.max(...nums);
+}
+
+function findDuplicate(nums) {
+  let slow = nums[0];
+  let fast = nums[slow];
   while (slow !== fast) {
-    slow = arr[slow];
-    fast = arr[arr[fast]];
+    slow = nums[slow];
+    fast = nums[nums[fast]];
   }
   fast = 0;
   while (slow !== fast) {
-    slow = arr[slow];
-    fast = arr[fast];
+    slow = nums[slow];
+    fast = nums[fast];
   }
-  return slow; 
+  return slow;
 }
 
-function productExceptSelf(arr) {
-  let left = 1, right = 1, result = [];
-  for (let i = arr.length-1; i >= 0; i--) {
-    result[i] = right;
-    right *= arr[i];
-  }
-  for (let j = 0; j < arr.length; j++) {
-    result[j] *= left;
-    left *= arr[j];
+function maximumProductSubarray(nums) {
+  let result = -Number.MAX_VALUE;
+  let min = 1, max = 1;
+  for (let num of nums) {
+    let currMin = Math.min(num, num * min, num * max);
+    let currMax = Math.max(num, num * max, num * min);
+
+    [min, max] = [currMin, currMax];
+    result = Math.max(result, max);
   }
   return result;
 }
@@ -65,162 +78,59 @@ function minimumRotatedArray(arr) {
   }
 }
 
-// Remove duplicates from array in-place and return new length 
+// Remove duplicate from array in place and return new length
 function removeDuplicates(nums) {
   let count = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === nums[i-1]) count++; 
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] === nums[i-1]) count++;
     else nums[i - count] = nums[i];
   }
-  return nums.length - count; 
+  return nums.length-count;
 }
 
 function maxArea(height) {
+  let start = 0;
+  let end = height.length-1;
   let max = 0;
-  let start = 0, end = height.length-1;
   while (start < end) {
     let area = Math.min(height[start], height[end]) * (end - start);
     max = Math.max(max, area);
 
     if (height[start] > height[end]) end--;
-    else start++; 
+    else start++;
   }
   return max;
 }
 
-function mergeSortedArrays(nums1, m, nums2, n) {
-  let length = m + n;
-  m--;
-  n--;
-  while (length--) {
-    if (n < 0 || nums1[m] > nums2[n]) nums1[length] = nums1[m--];
-    else nums1[length] = nums2[n--];
-  }
-}
-
 function searchRotatedArray(nums, target) {
-  let start = 0, end = nums.length-1;
+  let start = 0;
+  let end = nums.length-1;
   while (start <= end) {
     let mid = Math.floor((start+end)/2);
     if (nums[mid] === target) return mid;
-    // When dividing array into 2 halves, one half must be sorted. Check which one 
+
+    // Check if left half is sorted
     if (nums[start] <= nums[mid]) {
-      if (target >= nums[start] && target <= nums[mid]) end = mid - 1;
-      else start = mid + 1;
+      if (nums[start] <= target && target <= nums[mid]) {
+        end = mid - 1;
+      } else {
+        start = mid + 1;
+      }
+      // Check if right half is sorted 
     } else {
-      if (target >= nums[mid] && target <= nums[end]) start = mid + 1;
-      else end = mid - 1;
+      if (target >= nums[mid] && target <= nums[end]) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
     }
   }
   return -1;
 }
 
 // STRING
-function isPalindrome(s) {
-  let formatted = s.replace(/\W/g, '');
-  let reversed = s.split('').sort().join('');
-  return formatted.toLowerCase() === reversed.toLowerCase();
-}
 
-function isAnagram(s, t) {
-  if (s.length !== t.length) return false;
-  let count = {};
-  for (let char of s) {
-    if (count[char]) count[char]++;
-    else count[char] = 1;
-  }
-  for (let char of t) {
-    if (!map[char]) return false;
-    map[char]--;  // Compare t and s characters, then decrement char count after checking
-  }
-  return true;
-}
-
-function validParentheses(s) {
-  let pairs = {
-    "(":")",
-    "{":"}",
-    "[":"]"
-  };
-  let stack = [];
-  for (let i = 0; i < s.length; i++) {
-    let el = s[i];
-    if (pairs[el]) stack.push(pairs[el]);
-    else {
-      if (el !== stack.pop()) return false;
-    }
-  }
-  return stack.length === 0;
-}
-
-function generateParentheses(n) {
-  let result = [];
-  generate(n, n, '');
-  return result;
-
-  function generate(left, right, str) {
-    if (str.length && !left && !right) return result.push(str); 
-    if (left) generate(left - 1, right, str + '(');
-    // Important conditional to check if right side is greater than left
-    if (right > left) generate (left, right - 1, str + ')'); 
-  }
-}
-
-function longestSubstring(s) {
-  let max = 0; 
-  let result = [];
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
-    let index = result.indexOf(char);
-    result = result.slice(index + 1);
-    max = Math.max(max, result.push(char));
-  }
-  return max;
-}
-
-function palindromicSubstrings(s) {
-  let count = 0;
-  for (let i = 0; i < s.length; i++) {
-    helper(s, i, i);
-    helper(s, i, i+1);
-  }
-  return count;
-  function helper(s, low, high) {
-    while (low >= 0 && high <= s.length && s[low] === s[high]) {
-      count++;
-      low--;
-      high++;
-    }
-  }
-}
-
-function groupAnagrams(strs) {
-  let map = {};
-  for (let str of strs) {
-    let key = str.split('').sort().join('');
-    if (!map[key]) map[key] = [];
-    map[key].push(str);   // Store anagrams for every string
-  }
-  return Object.values(map);
-}
-
-function permutations(nums) {
-  let result = [];
-  function permute(current, remaining) {
-    if (remaining.length === 0) result.push(current.slice());
-    for (let i = 0; i < remaining.length; i++) {
-      // BACKTRACKING
-      current.push(remaining[i]);
-      let combo = remaining.slice(0, i).concat(remaining.slice(i + 1));
-      permute(current.slice(), combo);
-      current.pop();
-    }
-  }
-  permute([], nums);
-  return result;
-}
-
-// LINKED LIST
+// LINKED LIST 
 function reverse(head) {
   let prev = null;
   while (head) {
@@ -229,7 +139,7 @@ function reverse(head) {
     prev = head;
     head = next;
   }
-  return prev; 
+  return prev;
 }
 
 function hasCycle(head) {
@@ -243,17 +153,19 @@ function hasCycle(head) {
 }
 
 function removeNth(head, n) {
-  let slow = head, fast = head, curr = head;
+  let slow = head, fast = head;
+  let node = head;
   for (let i = 0; i < n; i++) {
     fast = fast.next;
   }
-  if (!fast) return curr.next;
-  while (slow !== fast) {
+  if (!fast) return node.next;
+
+  while (fast.next) {
     slow = slow.next;
     fast = fast.next;
   }
   slow.next = slow.next.next;
-  return curr; 
+  return node;
 }
 
 function middle(head) {
@@ -265,138 +177,17 @@ function middle(head) {
   return slow;
 }
 
-function merge(l1, l2) {
+function mergeLists(l1, l2) {
   if (!l1 || !l2) return l1 || l2;
+
   if (l1.val > l2.val) [l1, l2] = [l2, l1];
-  l1.next = merge(l1.next, l2);
+  l1.next = megeLists(l1.next, l2);
   return l1;
-}
-
-function isPalindrome(head) {
-  if (head === null || head.next === null) return true;
-  let slow = head, fast = head;
-  while (fast.next && fast.next.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-  }
-  // Reverse second half of array, then compare with first 
-  slow.next = reverse(slow.next);
-  slow = slow.next;
-  while (slow) {
-    if (slow.val !== head.val) return false;
-    head = head.next;
-    slow = slow.next;
-  }
-  return true; 
-}
-
-// BINARY SEARCH TREE
-function maxDepth(root) {
-  if (!root) return 0;
-  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
-}
-
-function sameTree(p, q) {
-  if (!p || !q) return p === q;
-  return sameTree(p.left, q.left) && sameTree(p.right, q.right) && (p.val === q.val);
-}
-
-function invert(root) {
-  if (!root) return null;
-  [root.left, root.right] = [invert(root.right), invert(root.left)];
-  return root;
-}
-
-function isSubtree(s, t) {
-  if (!s) return !t;
-  return isSubtree(s.left, t) || isSubtree(s.right, t) || sameTree(s, t);
-}
-
-function validBST(root) {
-  return helper(root, null, null);
-
-  function helper(root, min, max) {
-    if (!root) return true;
-    if (min !== null && root.val <= min) return false;
-    if (max !== null && root.val >= max) return false;
-    return helper(root.left, min, root.val) && helper(root.right, root.val, max);
-  }
-}
-
-function maxPathSum(root) {
-  let max = -Number.MAX_VALUE;
-  function dfs(node) {
-    if (!node) return 0;
-    let leftSum = dfs(node.left);
-    let rightSum = dfs(node.right);
-    max = Math.max(max, node.val + leftSum + rightSum);
-
-    return Math.max(0, node.val + leftSum, node.val + rightSum);
-  }
-  dfs(root);
-  return max;
-}
-
-function lowestCommonAncestor(root, p, q) {
-  if (!root || root === p || root === q) return root;
-
-  let left = lowestCommonAncestor(root.left, p, q);
-  let right = lowestCommonAncestor(root.right, p, q);
-  if (!left) return right;
-  if (!right) return left;
-  return root;
-}
-
-function levelOrder(root) {
-  let result = [];
-  let queue = [root];
-  while (queue.length > 0) {
-    let inner = [];
-    let size = queue.length;
-    for (let i = 0; i < size; i++) {
-      let node = queue.shift();
-      inner.push(node.val);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-    result.push(inner);
-  }
-  return result;
-}
-
-function inOrder(root) {
-  let stack = [];
-  let result = [];
-  while (stack.length > 0 || root) {
-    if (root) {
-      stack.push(root);
-      root = root.left;
-    } else {
-      root = stack.pop();
-      result.push(root.val);
-      root = root.right;
-    }
-  }
-  return result;
-}
-// root -> left -> right
-function preOrder(root) {
-  if (!root) return [];
-  let stack = [root];
-  let result = [];
-  while (stack.length) {
-    let node = stack.pop();
-    result.push(node.val);
-    if (node.right) stack.push(node.right);
-    if (node.left) stack.push(node.left);
-  }
-  return result;
 }
 
 // DYNAMIC PROGRAMMING
 function climbStairs(n) {
-  if (n >= 0 && n < 3) return n;
+  if (n <= 3 && n >= 0) return n;
   let memo = [1, 2];
   for (let i = 2; i < n; i++) {
     memo[i] = memo[i-1] + memo[i-2];
@@ -413,21 +204,23 @@ function canJump(arr) {
   return true;
 }
 
-function rob(nums) {
-  if (nums.length === 0) return 0;
-  if (nums.length === 1) return nums[0];
-  let memo = [nums[0], Math.max(nums[0], nums[1])];
-  for (let i = 2; i < nums.length; i++) {
-    memo[i] = Math.max(memo[i-1], nums[i] + memo[i-2]);
+function rob(arr) {
+  if (arr.length === 0) return 0;
+  if (arr.length === 1) return arr[0];
+
+  let memo = [arr[0], Math.max(arr[0], arr[1])];
+  for (let i = 2; i < arr.length; i++) {
+    memo[i] = Math.max(memo[i], memo[i-2] + arr[i]);
   }
-  return memo[nums.length-1];
+  return memo[arr.length-1];
 }
 
 function coinChange(coins, amount) {
   let dp = new Array(amount + 1);
   dp.fill(Number.MAX_VALUE);
   dp[0] = 0;
-  for (let i = 1; i <= amount; i++) {
+
+  for (let i = 0; i <= amount; i++) {
     for (let coin of coins) {
       let diff = i - coin;
       if (diff >= 0) dp[i] = Math.min(dp[i], dp[diff] + 1);
@@ -435,11 +228,12 @@ function coinChange(coins, amount) {
   }
   return dp[amount] === Number.MAX_VALUE ? -1 : dp[amount];
 }
-// console.log(coinChange([1,2,5], 11));
 
-// Return all possible subsets (power set)
-function subsets(nums) {
+function powerSet(nums) {
   let result = [];
+  dfs([], 0);
+  return result;
+
   function dfs(current, index) {
     result.push(current);
     for (let i = index; i < nums.length; i++) {
@@ -447,12 +241,7 @@ function subsets(nums) {
       dfs(subset, i + 1);
     }
   }
-
-  dfs([], 0);
-  return result;
 }
-
-// Find the length of the longest increasing subsequence
 
 //! IMPORTANT ALGORITHMS
 function bfs(root, value) {
