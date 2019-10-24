@@ -129,6 +129,55 @@ function searchRotatedArray(nums, target) {
 }
 
 // STRING
+function validPalindrome(s) {
+  let formatted = s.replace(/\W/g, '');
+  let reversed = s.split('').reverse().join('');
+  return formatted.toLowerCase() === reversed.toLowerCase();
+}
+
+function isAnagram(s, t) {
+  if (s.length !== t.length) return false;
+  let map = {};
+  for (let char of s) {
+    map[char] = (map[char] || 0) + 1;
+  }
+  for (let char of t) {
+    if (!map[char]) return false;
+    map[char]--;
+  }
+  return true;
+}
+
+function validParentheses(s) {
+  let pairs = {
+
+  }
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let el = s[i];
+    if (pairs[el]) stack.push(pairs[el]);
+    else {
+      if (el !== stack.pop()) return false;
+    }
+  }
+  return stack.length === 0;
+}
+
+function generateParentheses(n) {
+  let result = [];
+  generate(n, n, '');
+  return result;
+
+  function generate(left, right, str) {
+    if (!left && !right && str.length) return result.push(str);
+    if (left) generate(left - 1, right, str + '(');
+    if (right > left) generate(left, right - 1, str + ')');
+  }
+}
+
+function longestSubstring(s) {
+  
+}
 
 // LINKED LIST 
 function reverse(head) {
@@ -242,6 +291,25 @@ function powerSet(nums) {
     }
   }
 }
+
+// Given unsorted array, find length of longest increasing subsequence
+function lengthOfLIS(nums) {
+  if (nums.length === 0) return 0;
+  let dp = new Array(nums.length).fill(1);
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (nums[j] < nums[i]) dp[i] = Math.max(dp[i], dp[j] + 1);
+    }
+  }
+  return Math.max(...dp);
+}
+
+// BINARY SEARCH TREE
+function maxDepth(root) {
+
+}
+
+// INTERVALS
 
 //! IMPORTANT ALGORITHMS
 function bfs(root, value) {
