@@ -176,7 +176,57 @@ function generateParentheses(n) {
 }
 
 function longestSubstring(s) {
-  
+  let result = [];
+  let max = 0;
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    let idx = result.indexOf(char);
+    result = result.slice(idx + 1);
+    max = Math.max(max, result.push(char));
+  }
+  return max; 
+}
+
+// Count how many palindromic substrings 
+function countSubstrings(s) {
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    helper(s, i, i);
+    helper(s, i, i + 1);
+  }
+  return count;
+  function helper(low, high, str) {
+    while (low >= 0 && high <= str.length && str[low] === str[high]) {
+      count++;
+      low--;
+      high++;
+    }
+  }
+}
+
+function permute(nums) {
+  let result = [];
+  function permutations(current, remaining) {
+    if (remaining.length === 0) result.push(current.slice());
+    for (let i = 0; i < remaining.length; i++) {
+      current.push(remaining[i]);
+      let combo = remaining.slice(0, i).concat(remaining.slice(i+1));
+      permutations(current.slice(), combo);
+      current.pop();
+    }
+  }
+  permutations([], nums);
+  return result;
+}
+
+function groupAnagrams(strs) {
+  let map = {};
+  for (let str of strs) {
+    let key = str.split('').sort().join('');
+    if (!map[key]) map[key] = [];
+    map[key].push(str);
+  }
+  return Object.values(map);
 }
 
 // LINKED LIST 
@@ -306,10 +356,131 @@ function lengthOfLIS(nums) {
 
 // BINARY SEARCH TREE
 function maxDepth(root) {
+  if (root === null) return 0;
+  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+}
 
+function sameTree(p, q) {
+  if (!p || !q) return p === q;
+  return sameTree(p.left, q.left) && sameTree(p.right, q.right) && (p.val === q.val);
+}
+
+function invert(root) {
+  if (!root) return null;
+  let left = invert(root.left);
+  let right = invert(root.right);
+  [root.left, root.right] = [right, left];
+  return root;
+}
+
+function isSubtree(s, t) {
+  if (!s) return !t;
+  return isSubtree(s.left, t) || isSubtree(s.right, t) || sameTree(s, t);
+}
+
+function isValidBST(root) {
+  return dfs(root, null, null);
+
+  function dfs(root, min, max) {
+    if (!root) return true;
+    if (min !== null && root.val <= min) return false;
+    if (max !== null && root.val >= max) return false;
+
+    return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
+  }
+}
+
+function levelOrder(root) {
+  if (!root) return [];
+  let result = [];
+  let stack = [root];
+  while (stack.length > 0) {
+    let size = stack.length;
+    let temp = [];
+    for (let i = 0; i < size; i++) {
+      let node = stack.shift();
+      temp.push(node.val);
+      if (node.left) stack.push(node.left);
+      if (node.right) stack.push(node.right);
+    }
+    result.push(temp);
+  }
+  return result;
+}
+
+function inOrder(root) {
+  let stack = [];
+  let result = [];
+  while (root || stack.length) {
+    if (root) {
+    stack.push(root);
+    root = root.left;
+    } else {
+      root = stack.pop();
+      result.push(root.val);
+      root = root.right;
+    }
+  }
+  return result;
+}
+
+function maxPathSum(root) {
+  let max = -Number.MAX_VALUE;
+  dfs(root);
+  return max;
+
+  function dfs(node) {
+    if (!node) return 0;
+    let leftSum = dfs(node.left);
+    let rightSum = dfs(node.right);
+    max = Math.max(max, node.val + leftSum + rightSum);
+    return Math.max(0, node.val + leftSum, node.val + rightSum);
+  }
 }
 
 // INTERVALS
+function merge(intervals) {
+  if (intervals.length === 0) return intervals;
+  intervals.sort((a,b) => a[0] - b[0]);
+  let prev = intervals[0];
+  let result = [prev];
+  for (let i = 0; i < intervals.length; i++) {
+    let curr = intervals[i];
+    if (curr[0] <= prev[1]) prev[1] = Math.max(prev[1], curr[1]);
+    else {
+      result.push(curr);
+      prev = interval;
+    }
+  }
+  return result;
+}
+
+function eraseOverlapIntervals(intervals) {
+  if (intervals.length === 0) return 0;
+  intervals.sort((a, b) => a[1] - b[1]);
+
+  let count = 1;
+  let max = intervals[0][1];
+  for (let i = 0; i < intervals.length; i++) {
+    let next = intervals[i];
+    if (next[0] <= max) {
+      count += 1;
+      max = next[1];
+    }
+  }
+  return intervals.length - count;
+}
+
+// Given start, end times, determine if person can attend all meetings
+function canAttend(intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+  for (let i = 1; i < intervals.length; i++) {
+    let prev = intervals[i-1][1];
+    let curr = intervals[i][0];
+    if (curr < prev) return false;
+  }
+  return true; 
+}
 
 //! IMPORTANT ALGORITHMS
 function bfs(root, value) {
