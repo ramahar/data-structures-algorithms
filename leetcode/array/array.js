@@ -41,7 +41,42 @@ function productExceptSelf(arr) {
 }
 // console.log(productExceptSelf([1,2,3,5]));
 
-// Return length of maximum subarray 
+// Find subarray which has the largest sum and return the sum
 function maxSubarray(arr) {
-
+  let max = 0;
+  for (let i = 1; i < arr.length; i++) {
+    max = Math.max(arr[i], arr[i] + arr[i-1]);
+    arr[i] = max;
+  }
+  return Math.max(...arr);
 }
+
+function findDuplicate(arr) {
+  let slow = arr[0];
+  let fast = arr[slow];
+  while (slow !== fast) {
+    slow = arr[slow];
+    fast = arr[arr[fast]];
+  }
+  fast = 0;
+  while (slow !== fast) {
+    slow = arr[slow];
+    fast = arr[fast];
+  }
+  return slow;
+}
+
+// Find the contiguous subarray which has the largest product
+function maxProductSubarray(nums) {
+  let result = -Number.MAX_VALUE;
+  let min = 1, max = 1;
+  for (let num of nums) {
+    let currMin = Math.min(num, num * min, num * max);
+    let currMax = Math.max(num, num * min, num * max);
+
+    [min, max] = [currMin, currMax];
+    result = Math.max(result, max);
+  }
+  return result;
+}
+console.log(maxProductSubarray([-2,3,-4]));
