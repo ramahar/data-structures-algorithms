@@ -79,4 +79,54 @@ function maxProductSubarray(nums) {
   }
   return result;
 }
-console.log(maxProductSubarray([-2,3,-4]));
+// console.log(maxProductSubarray([-2,3,-4]));
+
+function minimumRotatedArray(arr) {
+  let min = arr[arr.length-1];
+  for (let num of arr) {
+    if (num <= min) return num;
+  }
+}
+
+// Remove duplicates from array in-place and return length
+var removeDuplicates = function(nums) {
+  let count = 0;
+  for (let i = 1; i < nums.length; i++) {
+    let diff = i - count;
+    if (nums[i] === nums[i-1]) count++;
+    else  nums[diff] = nums[i];
+  }
+  return nums.length - count;
+}
+
+function maxArea(heights) {
+  let start = 0;
+  let end = heights.length-1;
+  let max = 0;
+  while (start < end) {
+    let area = Math.min(height[start], height[end]) * (end - start);
+    max = Math.max(max, area);
+    if (height[start] > height[end]) end--;
+    else start++;
+  }
+  return max;
+}
+
+// Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand
+// Search target value and return its index 
+function searchRotatedArray(nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+  while (start <= end) {
+    let mid = Math.floor((start+end)/2);
+    if (nums[mid] === target) return mid;
+    if (nums[start] <= nums[mid]) {
+      if (target <= nums[mid] && target >= nums[start]) end = mid - 1;
+      else start = mid + 1;
+    } else {
+      if (target >= nums[mid] && target <= nums[end]) start = mid + 1;
+      else end = mid - 1;
+    }
+  }
+  return -1;
+}
