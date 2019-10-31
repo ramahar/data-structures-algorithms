@@ -130,3 +130,20 @@ function searchRotatedArray(nums, target) {
   }
   return -1;
 }
+
+// Given 2 sorted integer arrays, merge them into one sorted array
+function merge(nums1, m, nums2, n) {
+  let length = m + n;
+  m--;
+  n--;
+
+  while (length--) {
+    if (n < 0 || nums1[m] > nums2[n]) {
+      nums1[length] = nums1[m--];
+    } else {
+      nums1[length] = nums2[n--];
+    }
+  }
+  return nums1;
+}
+console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3));
