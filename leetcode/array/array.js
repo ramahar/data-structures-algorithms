@@ -146,4 +146,16 @@ function merge(nums1, m, nums2, n) {
   }
   return nums1;
 }
-console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3));
+// console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3));
+
+// Range Sum Query: Find sum of elements between indices i and j 
+function NumArray(nums) {
+  this.sum = nums;
+}
+NumsArray.prototype.sumRange = function(i, j) {
+  let sum = 0;
+  for (let idx = i; idx <= j; idx++) {
+    sum += this.sum[idx];
+  }
+  return sum;
+}
