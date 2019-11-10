@@ -525,11 +525,6 @@ function merge(left, right) {
 }
 // console.log(mergeSort([1,4,2,3,6]));
 
-function quickSort1(arr) {
-
-}
-console.log(quickSort([1,4,2,3,6]));
-
 function quickSort(arr) {
   if (arr.length <= 1) return arr; 
   let pivot = arr[0];

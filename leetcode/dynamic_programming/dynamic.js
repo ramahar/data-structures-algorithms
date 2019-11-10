@@ -71,3 +71,77 @@ function lengthOfLIS(nums) {
   }
   return Math.max(...dp);
 }
+
+// Given a matrix and a word, check if the word exists in matrix 
+var exist = function(board, word) {
+  let wordLength = word.length;
+  word = word.split("");
+  
+  function verify(row, col, matrix, path){
+      if(row < 0 || col < 0 || row >= matrix.length || col >= matrix[0].length || matrix[row][col] != word[path] || path > wordLength)
+          return false;
+      // Up to this point, we found the char we were looking for
+      path++;
+      matrix[row][col] = '#';
+      
+      //If we find the word
+      if(path === wordLength)
+          return true;
+      //Up
+      if(verify(row - 1, col, matrix, path))
+          return true;
+      //Right
+      if(verify(row, col + 1, matrix, path))
+          return true;
+      //Down
+      if(verify(row + 1, col, matrix, path))
+          return true;
+      //Left
+      if(verify(row, col - 1, matrix, path))
+          return true;
+      // Backtrack
+      matrix[row][col] = word[--path];
+      return false;
+  };
+  
+  for(let i = 0; i < board.length; i++){
+      for(let j = 0; j < board[i].length; j++){
+          if(verify(i, j, board, 0))
+              return true;
+      }
+  }
+  return false;
+};
+
+// Find length of longest common subsequence in 2 strings
+var longestCommonSubsequence = function(text1, text2) {
+  let dp = [];
+  let max = 0;
+  for(let i = 0; i <= text1.length; i++) {
+      // Entire first row and column is 0 
+      dp.push(new Array(text2.length + 1).fill(0));
+  }
+  for(let i = 1; i < dp.length; i++) {
+      for(let j = 1; j < dp[0].length; j++) {
+          // If letters match, diagonal + 1
+          if (text1[i-1] === text2[j-1]) {
+              dp[i][j] = dp[i-1][j-1] + 1
+          // If no match, get max of adjacent 
+          } else {
+              dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+          }
+          max = Math.max(max, dp[i][j]);
+      }
+  }
+  return max;
+};
+
+// Given a 2D board and a word, check if the word exists in the grid (letters are adjacent)
+function exist(board, word) {
+
+}
+console.log(exist([
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+], 'ABCCED'));
