@@ -91,3 +91,31 @@ function findMin(nums) {
   return nums[start];
 }
 // console.log(findMin([3,4,5,1,2]));
+
+// Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. 
+// An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
+function numIslands(grid) {
+  let count = 0;
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] === '1') {
+        count++;
+        dfs(grid, i, j);
+      }
+    }
+  }
+  return count;
+
+function dfs(grid, row, col) {
+  if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) return;
+
+  let value = grid[row][col];
+  if (value === '1') {
+    grid[row][col] = '#';
+    dfs(grid, row-1, col);
+    dfs(grid, row+1, col);
+    dfs(grid, row, col-1);
+    dfs(grid, row, col+1);
+  }
+ }
+}
