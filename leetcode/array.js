@@ -89,24 +89,47 @@ function maxProductSubarray(nums) {
   }
   return result;
 }
-console.log(maxProductSubarray([-4, 3, -2]));
+// console.log(maxProductSubarray([-4, 3, -2]));
 
 function minimumRotatedArray(arr) {
-
+  let start = 0, end = arr.length-1;
+  while (start < end) {
+    if (nums[end] > nums[start]) return nums[start];
+    let mid = Math.floor((arr.length)/2);
+    if (nums[mid] > nums[end]) start = mid + 1;
+    else end = mid;
+  }
+  return nums[start];
 }
 
+// Given array with duplicates, remove duplicates in-place and return new length
 function removeDuplicates(arr) {
-
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i-1]) count++;
+    else arr[i - count] = arr[i];
+  }
+  return arr.length - count;
 }
+// console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
 
-function maxArea(heights) {
-
+function mergeSortedArrays(nums1, m, nums2, n) {
+  //? Iterate backwards, comparing elements and storing in nums1 in-place
+  let length = m + n;
+  m--;
+  n--;
+  while (length--) {
+    if (nums1[m] > nums2[n] || n < 0) nums1[length] = nums1[m--];
+    else nums1[length] = nums2[n--];
+  }
+  return nums1;
 }
+// console.log(mergeSortedArrays([1,2,3,0,0,0], 3, [2,5,6], 3));
 
 function searchRotated(arr) {
 
 }
 
-function mergeSortedArrays(nums1, m, nums2, n) {
+function maxArea(heights) {
 
 }
