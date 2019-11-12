@@ -126,10 +126,36 @@ function mergeSortedArrays(nums1, m, nums2, n) {
 }
 // console.log(mergeSortedArrays([1,2,3,0,0,0], 3, [2,5,6], 3));
 
-function searchRotated(arr) {
+function searchRotated(nums, target) {
+  //? Check which half of array is sorted, then binary search
+  let start = 0, end = nums.length-1;
+  while (start <= end) {
+    let mid = Math.floor((nums.length)/2);
+    if (target === nums[mid]) return mid;
 
+    if (nums[mid] >= nums[start]) {
+      if (target >= nums[start] && target <= nums[mid]) end = mid - 1;
+      else start = mid + 1;
+    } else {
+      if (target >= nums[mid] && target <= nums[end]) start = mid + 1;
+      else end = mid - 1;
+    }
+  }
+  return -1;
 }
 
+// Find the maximum area such that a container has the most water 
 function maxArea(heights) {
+  //? Start with widest container, then keep changing heights to find max area 
+  let start = 0, end = heights.length-1;
+  let max = 0;
 
+  while (start < end) {
+    let area = Math.min(heights[start], heights[end]) * (end - start);
+    max = Math.max(max, area);
+
+    if (height[start] > height[end]) end--;
+    else start++;
+  }
+  return max;
 }
