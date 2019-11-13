@@ -95,6 +95,6 @@ function mergeKSortedLists(lists) {
 }
 
 // Sort linked list in O(n log n) time
-function sort(head) {
+function sortList(head) {
 
 }
