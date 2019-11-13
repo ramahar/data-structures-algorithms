@@ -138,7 +138,7 @@ function buildTree(preorder, inorder) {
   if (!inorderlength) return null;
 
   let root = new TreeNode(preorder.shift());
-  let index = inorder.indexOf(root);
+  let index = inorder.indexOf(root.val);
 
   root.left = buildTree(preorder, inorder.slice(0, index));
   root.right = buildTree(preorder, inorder.slice(index + 1));
