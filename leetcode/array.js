@@ -159,3 +159,26 @@ function maxArea(heights) {
   }
   return max;
 }
+
+// Find top k frequent elements in array
+function topKFrequent(nums, k) {
+  //? Use object for frequencies, bucket to store same elements together
+  let bucket = new Array(nums.length+1).fill().map(() => []);
+  let result = [];
+  let map = {};
+
+  for (let num of nums) {
+    map[num] = (map[num] || 0) + 1;
+  }
+  for (let num in map) {
+    bucket[map[num]].push(parseInt(num));
+  }
+
+  // Iterate backwards through buckets, getting k most frequent
+  for (let i = nums.length; i >= 0 && k > 0; k--) {
+    while (bucket[i].length === 0) i--;   // Skip over empty buckets, push top k to result
+    result.push(bucket[i].shift());
+  }
+  return result;
+}
+// console.log(topKFrequent([1,1,1,2,2,3], 2));

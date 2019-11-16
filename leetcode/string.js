@@ -89,3 +89,45 @@ function palindromicSubstrings(s) {
     }
   }
 }
+
+// Find the minimum window in S which will contain all the characters in T
+var minWindow = function(s, t) {
+  var result = '';
+   var map = {};
+   for (let char of t) {
+     map[char] = (map[char] || 0) + 1;
+   }
+   var count = Object.keys(map).length;
+
+   var l = 0;
+   var r = -1;
+   
+   while (r < s.length) {
+       if (count === 0) {
+           // good condition. l~r contains t
+           if (!result || r - l + 1 < result.length) {
+               result = s.slice(l, r + 1);
+           }
+           
+           // get rid of curr ch and then move l
+           if (map[s[l]] !== undefined) {
+               map[s[l]]++;
+           }
+           if (map[s[l]] > 0) {
+               count++;
+           }
+           l++;
+           
+       } else {
+           // l~r doesn't contain t. Move r and add new ch
+           r++;
+           if (map[s[r]] !== undefined) {
+               map[s[r]]--;
+           }
+           if (map[s[r]] === 0) {
+               count--;
+           }
+       }
+   }
+   return result;
+};
