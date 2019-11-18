@@ -181,3 +181,16 @@ function topKFrequent(nums, k) {
   return result;
 }
 // console.log(topKFrequent([1,1,1,2,2,3], 2));
+
+// Find all unique triplets in array which sum up to 0
+function threeSum(nums) {
+  //? Sort array, fix a left-most number, iterate through rest and check if any combo adds up to 0
+  if (nums.length < 3) return result;
+  nums.sort((a, b) => a - b);
+  
+  let result = [];
+  let target = 0;
+  for (let i = 0; i < nums.length - 2; i++) {
+    
+  }
+}
