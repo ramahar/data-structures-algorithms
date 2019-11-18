@@ -91,43 +91,37 @@ function palindromicSubstrings(s) {
 }
 
 // Find the minimum window in S which will contain all the characters in T
-var minWindow = function(s, t) {
-  var result = '';
-   var map = {};
-   for (let char of t) {
-     map[char] = (map[char] || 0) + 1;
-   }
-   var count = Object.keys(map).length;
+function minimumSlidingWindow(s, t) {
+  let result = '';
+  let left = 0;
+  let right = -1;
+  let map = {};
 
-   var l = 0;
-   var r = -1;
-   
-   while (r < s.length) {
-       if (count === 0) {
-           // good condition. l~r contains t
-           if (!result || r - l + 1 < result.length) {
-               result = s.slice(l, r + 1);
-           }
-           
-           // get rid of curr ch and then move l
-           if (map[s[l]] !== undefined) {
-               map[s[l]]++;
-           }
-           if (map[s[l]] > 0) {
-               count++;
-           }
-           l++;
-           
-       } else {
-           // l~r doesn't contain t. Move r and add new ch
-           r++;
-           if (map[s[r]] !== undefined) {
-               map[s[r]]--;
-           }
-           if (map[s[r]] === 0) {
-               count--;
-           }
-       }
-   }
-   return result;
-};
+  // t character frequency count
+  t.split('').forEach(char => (map[char] || 0) + 1);
+  let count = Object.keys(map).length;
+
+  while (right <= s.length) {
+    // Found a valid substring
+    if (count === 0) {
+      if (!result || right - left + 1 < result.length) {
+        result = s.slice(left, right + 1);
+      }
+
+      // Shift left boundary
+      let current = s[left];
+      if (map[current] !== null) map[current]++;
+      if (map[current] > 0) count++;
+      left++;
+    } else {
+      // Invalid substring. Shift right boundary
+      right++;
+      // Decrease character count
+      let current = s[right];
+      if (map[current] !== null) map[current--];
+      if (map[current] === 0) count--;
+    }
+  }
+  return result;
+}
+console.log(minimumSlidingWindow("ADOBECODEBANC", "ABC"));
