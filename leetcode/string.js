@@ -135,6 +135,19 @@ function addBinary(a, b) {
 }
 // console.log(addBinary("11", "1"));
 
+// Find longest common prefix among an array of strings
+function longestCommonPrefix(arr) {
+  // Iterate through first string, compare characters one-by-one with other strings 
+  if (arr.length === 0) return '';
+  for (let i = 0; i < arr[0].length; i++) {
+    for (let str of arr) {
+      if (str[i] !== arr[0][i]) return str.slice(0, i);
+    }
+  }
+  return arr[0];
+}
+// console.log(longestCommonPrefix(["flower","flow","flight"]));
+
 // Find the minimum window in S which will contain all the characters in T
 function minimumSlidingWindow(s, t) {
 
