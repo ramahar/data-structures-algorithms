@@ -90,38 +90,53 @@ function palindromicSubstrings(s) {
   }
 }
 
-// Find the minimum window in S which will contain all the characters in T
-function minimumSlidingWindow(s, t) {
+// Find the longest palindromic substring 
+function longestPalindrome(s) {
+  //? Use 2 pointers to find palindromes, keep expanding to find longest palindrome
   let result = '';
-  let left = 0;
-  let right = -1;
-  let map = {};
-
-  // t character frequency count
-  t.split('').forEach(char => (map[char] || 0) + 1);
-  let count = Object.keys(map).length;
-
-  while (right <= s.length) {
-    // Found a valid substring
-    if (count === 0) {
-      if (!result || right - left + 1 < result.length) {
-        result = s.slice(left, right + 1);
+  for (let i = 0; i < s.length; i++) {
+    for (let j = 0; j < 2; j++) {
+      let left = i;
+      let right = i + j;
+      while (s[left] && s[left] === s[right]) {
+        left--;
+        right++;
       }
-
-      // Shift left boundary
-      let current = s[left];
-      if (map[current] !== null) map[current]++;
-      if (map[current] > 0) count++;
-      left++;
-    } else {
-      // Invalid substring. Shift right boundary
-      right++;
-      // Decrease character count
-      let current = s[right];
-      if (map[current] !== null) map[current--];
-      if (map[current] === 0) count--;
+      if (right - left - 1 > result.length) {
+        result = s.slice(left + 1, right);
+      }
     }
   }
   return result;
 }
-console.log(minimumSlidingWindow("ADOBECODEBANC", "ABC"));
+// console.log(longestPalindrome("babad"));
+
+// Given 2 binary strings, return their sum as a string
+function addBinary(a, b) {
+  //? Loop backwards, keep track of carry, digits and string conversion
+  let result = '';
+  let carry = 0;
+  let i = a.length-1;
+  let j = b.length-1;
+  while (i >= 0 || j >= 0) {
+    let aDigit = a[i] || '0';
+    let bDigit = b[j] || '0';
+
+    let temp = parseInt(aDigit) + parseInt(bDigit) + carry;
+    let digit = (temp % 2);
+    carry = Math.floor(temp/2);
+
+    result = digit + result;
+    i--;
+    j--;
+  }
+  if (carry !== 0) result = carry + result;
+  return result;
+}
+// console.log(addBinary("11", "1"));
+
+// Find the minimum window in S which will contain all the characters in T
+function minimumSlidingWindow(s, t) {
+
+}
+// console.log(minimumSlidingWindow("ADOBECODEBANC", "ABC"));
