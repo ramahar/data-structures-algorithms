@@ -96,5 +96,18 @@ function mergeKSortedLists(lists) {
 
 // Sort linked list in O(n log n) time
 function sortList(head) {
+  if (!head || !head.next) return head;
+  let slow = head, fast = head;
+  let prev = head;
 
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    prev = slow;
+    slow = slow.next;
+  }
+
+  prev.next = null;   // Close first half of list
+  let l1 = sortList(head);
+  let l2 = sortList(slow);
+  return merge(l1, l2);
 }
