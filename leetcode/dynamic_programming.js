@@ -46,36 +46,3 @@ function coinChange(coins, amount) {
   return dp[amount] === Number.MAX_VALUE ? -1 : dp[amount];
 }
 // console.log(coinChange([1,2,5], 11));
-
-
-// Given a 2D board and a word, find if the word exists in the grid 
-function exist(board, word) {
-  word = word.split('');
-  
-  function verify(row, col, matrix, path) {
-    if (row < 0 || col < 0 || row <= matrix.length || col >= matrix[0].length) return;
-
-    matrix[row][col] = '#';
-    path++;
-
-    if(verify(row-1, col, matrix, path)) return true;
-    if(verify(row+1,col, matrix, path)) return true;
-    if(verify(row, col-1, matrix, path)) return true;
-    if(verify(row, col+1, matrix, path)) return true;
-
-    matrix[row][col] = word[--path];  // Backtrack
-    return false;
-  }
-
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[0].length; j++) {
-      if (verify(i, j, board, 0)) return true; 
-    }
-  }
-  return false;
-}
-console.log(exist([
-  ['A','B','C','E'],
-  ['S','F','C','S'],
-  ['A','D','E','E']
-], "ABCCED"));
