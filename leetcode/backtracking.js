@@ -36,6 +36,28 @@ function permutations(nums) {
 }
 // console.log(permutations([1,2,3]));
 
+// Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+function generateParentheses(n) {
+  let result = [];
+  generate(n, n, '');
+  return result;
+
+  function generate(left, right, str) {
+    if (!left && !right && str.length) {
+      return result.push(str);
+    }
+    if (left) generate(left - 1, right, str + '(');
+    // If right > left, add to left to balance parentheses
+    if (right > left) generate(left, right - 1, str + ')');
+  }
+}
+// console.log(generateParentheses(3));
+
+// Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+function combinations(n, k) {
+  
+}
+
 // Given a 2D board and a word, find if the word exists in the grid 
 function exist(board, word) {
   word = word.split('');
