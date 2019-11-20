@@ -55,8 +55,23 @@ function generateParentheses(n) {
 
 // Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 function combinations(n, k) {
-  
+  let result = [];
+  backtrack([], 1);
+  return result;
+
+  function backtrack(current, index) {
+    if (current.length > k) return;
+    if (current.length === k) {
+      result.push(current.slice());
+      return;
+    }
+
+    for (let i = index; i <= n; i++) {
+      backtrack(current.concat(i), i + 1);
+    }
+  }
 }
+// console.log(combinations(4, 2));
 
 // Given a 2D board and a word, find if the word exists in the grid 
 function exist(board, word) {
