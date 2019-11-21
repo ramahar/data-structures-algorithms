@@ -152,4 +152,4 @@ function longestCommonPrefix(arr) {
 function minimumSlidingWindow(s, t) {
 
 }
-// console.log(minimumSlidingWindow("ADOBECODEBANC", "ABC"));
+console.log(minimumSlidingWindow("ADOBECODEBANC", "ABC"));

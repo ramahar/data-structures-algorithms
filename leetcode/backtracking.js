@@ -107,3 +107,33 @@ function exist(board, word) {
 //   ['S','F','C','S'],
 //   ['A','D','E','E']
 // ], "ABCCED"));
+
+// Given a 2d grid map of '1's (land) and '0's (water), count the number of islands.
+function numIslands(grid) {
+  //? Treat matrix as graph, recursive DFS on grid with row, column if land seen 
+  let count = 0;
+  
+  function dfs(grid, row, col) {
+    if (row < 0 || col < 0 || row >= grid.length || col >= grid.length) return;
+
+    let value = grid[row][col];
+    if (value === '1') {
+      grid[row][col] = '#';
+      dfs(grid, row+1, col);
+      dfs(grid, row-1, col);
+      dfs(grid, row, col-1);
+      dfs(grid, row, col+1);
+    }
+  }
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] === '1') {
+        count++;
+        dfs(grid, i, j);
+      }
+    }
+  }
+  return count;
+}
+// console.log(numIslands('11000, 11000, 00100, 00011'));
