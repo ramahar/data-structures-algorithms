@@ -150,6 +150,33 @@ function longestCommonPrefix(arr) {
 
 // Find the minimum window in S which will contain all the characters in T
 function minimumSlidingWindow(s, t) {
+  let result = '';
+  let map = {};
+  for (let char of t) {
+    map[char] = (map[char] || 0) + 1;
+  }
+  let count = Object.keys(map).length;
 
+  let left = 0;
+  let right = -1;
+  while (right < s.length) {
+    // Good condition. l - r contains t
+    if (count === 0) {
+      if (!result || right - left + 1 < result.length) {
+        result = s.slice(left, right + 1);
+      }
+
+      if (map[s[left]] !== undefined) map[s[left]]++;
+      if (map[s[left]] > 0) count++;
+      left++;
+
+    } else {
+      // Bad condition. Shift right boundary 
+      right++;
+      if (map[s[right]] !== undefined) map[s[right]]--;
+      if (map[s[right]] === 0) count--;
+    }
+  }
+  return result;
 }
 console.log(minimumSlidingWindow("ADOBECODEBANC", "ABC"));

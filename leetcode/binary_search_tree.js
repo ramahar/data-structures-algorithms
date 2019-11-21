@@ -122,6 +122,7 @@ function kthSmallest(root, k) {
   }
 }
 
+// Check if BST is symmetric
 function isSymmetric(root) {
   if (!root) return true;
   return isMirror(root.left, root.right);
@@ -134,6 +135,7 @@ function isSymmetric(root) {
   }
 }
 
+// Given preorder and inorder traversal, build a BST 
 function buildTree(preorder, inorder) {
   if (!inorderlength) return null;
 
@@ -143,4 +145,10 @@ function buildTree(preorder, inorder) {
   root.left = buildTree(preorder, inorder.slice(0, index));
   root.right = buildTree(preorder, inorder.slice(index + 1));
   return root;
+}
+
+// Verify preorder serialization of BST
+function isValidSerialization(preorder) {
+  //? Traverse backwards and use stack to check if there are 2 #'s before every number
+  
 }
