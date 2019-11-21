@@ -150,5 +150,16 @@ function buildTree(preorder, inorder) {
 // Verify preorder serialization of BST
 function isValidSerialization(preorder) {
   //? Traverse backwards and use stack to check if there are 2 #'s before every number
+  preorder = preorder.split(',');
+  let stack = [];
   
+  for (let i = preorder.length-1; i >= 0; i--) {
+    if (preorder[i] !== '#') {
+      // If number encountered and 2 #'s not found before, return false
+      if (!stack.pop() || !stack.pop()) return false;
+    }
+    stack.push('#');
+  }
+  return stack.length === 1;
 }
+console.log(isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
